@@ -1,5 +1,5 @@
 from src.core.banner import show_banner
-from src.core.config import load_configuration
+from src.core.config import config
 from src.core.logger import initialize_logger
 
 
@@ -7,7 +7,12 @@ def run():
     """Start the CryptoIntel OS application."""
 
     show_banner()
-    load_configuration()
+
     initialize_logger()
+
+    config.verify_directories()
+
+    print(f"Version: {config.version}")
+    print(f"Environment: {config.environment}")
 
     print("\n✓ CryptoIntel OS is ready!")
