@@ -2,6 +2,7 @@ from src.core.banner import show_banner
 from src.core.config import config
 from src.core.logger import initialize_logger, logger
 from src.database.manager import database
+from src.database.repositories.project_repository import project_repository
 
 
 def run():
@@ -15,6 +16,14 @@ def run():
 
     database.connect()
     database.create_tables()
+
+    # Temporary test: Add our first project
+    project_repository.add_project(
+        name="Hyperliquid",
+        website="https://hyperliquid.xyz",
+        blockchain="HyperEVM",
+        category="DeFi",
+    )
 
     logger.info("Project directories verified")
     logger.info("Database connected")
