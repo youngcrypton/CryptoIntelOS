@@ -1,0 +1,12 @@
+{
+    "website": true,
+    "x": true,
+    "telegram": false,
+    "discord": false,
+    "github": false,
+    "blockchain": false,
+    "reddit": false,
+    "farcaster": false,
+    "coingecko": false,
+    "defillama": false
+}

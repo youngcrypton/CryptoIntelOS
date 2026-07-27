@@ -1,53 +1,48 @@
 from src.database.manager import database
+from src.models.project import Project
 
 
 class ProjectRepository:
-    """Handles all project-related database operations."""
-
-    def project_exists(self, name):
-        """Return True if the project already exists."""
-
-        cursor = database.connection.cursor()
-
-        cursor.execute(
-            "SELECT id FROM projects WHERE LOWER(name)=LOWER(?)",
-            (name,),
-        )
-
-        return cursor.fetchone() is not None
+    """Handles project database operations."""
 
     def add_project(
         self,
         name,
-        website=None,
-        discord=None,
-        x=None,
-        blockchain=None,
-        category=None,
-        status="Watching",
+        website,
+        blockchain,
+        category,
     ):
-        """Add a new project."""
-
-        if self.project_exists(name):
-            print(f"✓ Project '{name}' already exists")
-            return
-
         cursor = database.connection.cursor()
 
         cursor.execute(
             """
+            SELECT id
+            FROM projects
+            WHERE name = ?
+            """,
+            (name,),
+        )
+
+        if cursor.fetchone():
+            print(f"✓ Project '{name}' already exists")
+            return
+
+        cursor.execute(
+            """
             INSERT INTO projects
-            (name, website, discord, x, blockchain, category, status)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            (
+                name,
+                website,
+                blockchain,
+                category
+            )
+            VALUES (?, ?, ?, ?)
             """,
             (
                 name,
                 website,
-                discord,
-                x,
                 blockchain,
                 category,
-                status,
             ),
         )
 
@@ -56,7 +51,7 @@ class ProjectRepository:
         print(f"✓ Project '{name}' added")
 
     def get_all_projects(self):
-        """Return all stored projects."""
+        """Return every project being monitored."""
 
         cursor = database.connection.cursor()
 
@@ -65,15 +60,28 @@ class ProjectRepository:
             SELECT
                 id,
                 name,
+                website,
                 blockchain,
                 category,
                 status
             FROM projects
-            ORDER BY id
+            ORDER BY name
             """
         )
 
-        return cursor.fetchall()
+        rows = cursor.fetchall()
+
+        return [
+            Project(
+                id=row[0],
+                name=row[1],
+                website=row[2],
+                blockchain=row[3],
+                category=row[4],
+                status=row[5],
+            )
+            for row in rows
+        ]
 
 
 project_repository = ProjectRepository()

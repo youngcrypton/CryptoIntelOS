@@ -1,12 +1,33 @@
+from src.web_engine.manager import (
+    browser_manager,
+)
+
 from src.core.banner import show_banner
+
 from src.core.config import config
-from src.core.logger import initialize_logger, logger
+
+from src.core.logger import (
+    initialize_logger,
+    logger,
+)
+
 from src.database.manager import database
-from src.services.project_service import project_service
+
+from src.scheduler.scheduler import scheduler
+
+from src.services.project_service import (
+    project_service,
+)
+
+from src.services.event_service import (
+    event_service,
+)
 
 
 def run():
-    """Start the CryptoIntel OS application."""
+    """
+    Starts CryptoIntel OS.
+    """
 
     show_banner()
 
@@ -15,31 +36,49 @@ def run():
     config.verify_directories()
 
     database.connect()
+
     database.create_tables()
 
-    project_service.add_project(
-        name="Hyperliquid",
-        website="https://hyperliquid.xyz",
-        blockchain="HyperEVM",
-        category="DeFi",
-    )
+    # ---------------------------------------
+    # Start Chromium Browser
+    # ---------------------------------------
 
-    print("\nStored Projects\n")
+    browser_manager.start()
 
-    projects = project_service.list_projects()
+    try:
 
-    for project in projects:
-        print(project)
+        scheduler.run()
 
-    logger.info("Project directories verified")
-    logger.info("Database connected")
-    logger.info("Database tables verified")
+        print("\nStored Projects\n")
 
-    print(f"\nVersion: {config.version}")
-    print(f"Environment: {config.environment}")
+        for project in project_service.list_projects():
 
-    logger.info("Application startup completed")
+            print(project)
 
-    print("\n✓ CryptoIntel OS is ready!")
+        print("\nStored Events\n")
 
-    database.close()
+        for event in event_service.list_events():
+
+            print(event)
+
+        logger.info(
+            "Application startup completed"
+        )
+
+        print(f"\nVersion: {config.version}")
+
+        print(
+            f"Environment: {config.environment}"
+        )
+
+        print("\n✓ CryptoIntel OS is ready!")
+
+    finally:
+
+        # ---------------------------------------
+        # Always close browser and database
+        # ---------------------------------------
+
+        browser_manager.stop()
+
+        database.close()
