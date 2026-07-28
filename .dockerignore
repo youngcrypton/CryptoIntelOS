@@ -1,0 +1,52 @@
+# ==========================================
+# Git
+# ==========================================
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# Virtual Environment
+.venv/
+venv/
+
+# Environment Variables
+.env
+
+# Logs
+logs/
+*.log
+
+# Databases
+*.db
+*.sqlite3
+
+# Build Artifacts
+build/
+dist/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Documentation Builds
+site/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Misc
+*.tmp
+*.bak

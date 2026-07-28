@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+
+  cryptointel:
+
+    build: .
+
+    container_name: cryptointel-os
+
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./assets:/app/assets
+
+    stdin_open: true
+
+    tty: true
