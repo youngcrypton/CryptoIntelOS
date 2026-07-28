@@ -1,5 +1,1845 @@
 # CryptoIntel OS
 
+> The Open Source Intelligence Operating System for Crypto, Web3 and AI Ecosystems.
+
+---
+
+## Discover. Collect. Analyze. Monitor.
+
+CryptoIntel OS is an extensible intelligence platform designed to automatically discover, monitor, analyze and score crypto and Web3 projects across multiple information sources.
+
+Instead of manually checking:
+
+- Websites
+- X (Twitter)
+- Discord
+- GitHub
+- Documentation
+- Whitepapers
+- Roadmaps
+- Tokenomics
+- Blog updates
+
+CryptoIntel OS continuously collects information, detects meaningful changes, evaluates project quality, and produces actionable intelligence.
+
+Everything is built around a modular architecture that allows new collectors, crawlers, analyzers and AI engines to be added independently.
+
+---
+
+## Vision
+
+Build the industry's most comprehensive open source intelligence platform for cryptocurrency projects.
+
+The long term goal is to become the operating system that powers:
+
+- Crypto Researchers
+- Venture Capital firms
+- Airdrop Hunters
+- Security Researchers
+- Traders
+- Web3 Analysts
+- AI Agents
+- Autonomous Research Systems
+
+---
+
+## Key Features
+
+- Modular collector architecture
+- Multi source intelligence gathering
+- Website crawler
+- X profile monitoring
+- AI powered analysis
+- Rule based intelligence engine
+- Signal scoring system
+- Confidence calculation
+- SQLite persistence layer
+- Extensible plugin architecture
+- Production ready repository structure
+- Complete developer documentation
+
+---
+
+## Repository Architecture
+
+```
+CryptoIntelOS/
+│
+├── src/
+│   ├── collectors/
+│   ├── crawlers/
+│   ├── intelligence/
+│   ├── discovery/
+│   ├── pipeline/
+│   ├── scheduler/
+│   ├── services/
+│   ├── database/
+│   ├── models/
+│   ├── web_engine/
+│   └── core/
+│
+├── docs/
+│
+├── tests/
+│
+├── config/
+│
+├── assets/
+│
+├── logs/
+│
+└── data/
+```
+
+---
+
+## Current Development Status
+
+| Component | Status |
+|-----------|--------|
+| Project Architecture | Complete |
+| Documentation | Complete |
+| Folder Structure | Complete |
+| Core Framework | Complete |
+| Database Layer | Complete |
+| Collector Interfaces | Complete |
+| Intelligence Framework | Complete |
+| Crawling Framework | Complete |
+| Scheduler | Planned |
+| AI Engine | Planned |
+| Notification Engine | Planned |
+| Dashboard | Planned |
+
+---
+
+## Philosophy
+
+CryptoIntel OS follows one simple principle:
+
+> Collect everything. Trust nothing. Score everything.
+
+Every discovered project should be evaluated objectively using transparent rules instead of hype or community sentiment.
+
+---
+
+## License
+
+MIT License
+
+---
+---
+
+# System Architecture
+
+CryptoIntel OS follows a modular architecture where every subsystem has a single responsibility. Instead of placing everything into one script, the application is divided into independent components that communicate through clearly defined interfaces.
+
+The entire data flow is designed like a production intelligence platform.
+
+```
+                     ┌────────────────────────────┐
+                     │      Data Sources          │
+                     │                            │
+                     │  X (Twitter)              │
+                     │  Discord                  │
+                     │  Websites                 │
+                     │  GitHub                   │
+                     │  RSS                      │
+                     │  Blockchains              │
+                     └─────────────┬─────────────┘
+                                   │
+                                   ▼
+                     ┌────────────────────────────┐
+                     │        Collectors          │
+                     └─────────────┬─────────────┘
+                                   │
+                                   ▼
+                     ┌────────────────────────────┐
+                     │         Crawlers           │
+                     └─────────────┬─────────────┘
+                                   │
+                                   ▼
+                     ┌────────────────────────────┐
+                     │      Discovery Engine      │
+                     └─────────────┬─────────────┘
+                                   │
+                                   ▼
+                     ┌────────────────────────────┐
+                     │ Intelligence Engine        │
+                     │                            │
+                     │ Rules                      │
+                     │ AI                         │
+                     │ Pattern Detection          │
+                     └─────────────┬─────────────┘
+                                   │
+                                   ▼
+                     ┌────────────────────────────┐
+                     │        Pipeline            │
+                     └─────────────┬─────────────┘
+                                   │
+                                   ▼
+                     ┌────────────────────────────┐
+                     │        Database            │
+                     └─────────────┬─────────────┘
+                                   │
+                                   ▼
+                     ┌────────────────────────────┐
+                     │ Notifications / Dashboard  │
+                     └────────────────────────────┘
+```
+
+---
+
+# High Level Workflow
+
+CryptoIntel OS processes information in several stages.
+
+1. Collect data
+
+The collectors retrieve raw information from supported platforms.
+
+Examples include:
+
+* X profiles
+* project websites
+* GitHub repositories
+* Discord announcements
+* blockchain APIs
+
+---
+
+2. Crawl content
+
+The crawler expands discovered pages and gathers structured content.
+
+Examples:
+
+* roadmap pages
+* documentation
+* tokenomics
+* team pages
+* audit reports
+
+---
+
+3. Normalize data
+
+Different websites expose information differently.
+
+The normalization layer converts everything into one unified internal format.
+
+---
+
+4. Extract intelligence
+
+The Intelligence Engine searches every document for meaningful signals.
+
+Examples include:
+
+* token launches
+
+* partnerships
+
+* audits
+
+* funding
+
+* governance
+
+* roadmap updates
+
+* security issues
+
+* ecosystem expansion
+
+---
+
+5. Score confidence
+
+Every finding receives a confidence score.
+
+Signals confirmed by multiple independent sources receive higher confidence.
+
+---
+
+6. Store results
+
+Structured data is saved into SQLite.
+
+Future versions can switch to PostgreSQL without changing the business logic.
+
+---
+
+7. Notify users
+
+Only important discoveries become notifications.
+
+Examples include:
+
+* New token announced
+
+* Audit published
+
+* Team updated
+
+* Partnership announced
+
+* Governance proposal
+
+* Website changed
+
+---
+
+# Design Principles
+
+CryptoIntel OS follows several engineering principles.
+
+### Modular
+
+Every component has one responsibility.
+
+### Scalable
+
+Adding a new collector should not require rewriting existing collectors.
+
+### Testable
+
+Each module can be tested independently.
+
+### Replaceable
+
+Entire subsystems can be replaced without affecting the rest of the application.
+
+### AI Ready
+
+Every intelligence component can later be upgraded with LLMs without changing the pipeline.
+
+### Production Ready
+
+The architecture mirrors real world data engineering systems used inside modern technology companies.
+
+---
+
+# Project Structure
+
+The repository is organized into modular packages. Each directory has a clearly defined responsibility.
+
+```
+CryptoIntelOS/
+│
+├── .github/
+│   ├── workflows/
+│   ├── ISSUE_TEMPLATE/
+│   ├── CODEOWNERS
+│   └── PULL_REQUEST_TEMPLATE.md
+│
+├── assets/
+│
+├── config/
+│   └── collectors.json
+│
+├── data/
+│   └── cryptointel.db
+│
+├── docs/
+│
+├── logs/
+│
+├── src/
+│   ├── ai/
+│   ├── collectors/
+│   ├── core/
+│   ├── crawlers/
+│   ├── database/
+│   ├── discovery/
+│   ├── intelligence/
+│   ├── models/
+│   ├── notifications/
+│   ├── pipeline/
+│   ├── scheduler/
+│   ├── services/
+│   ├── ui/
+│   ├── utils/
+│   └── web_engine/
+│
+├── tests/
+│
+├── README.md
+├── main.py
+└── requirements.txt
+```
+
+---
+
+# Directory Breakdown
+
+## .github/
+
+Contains everything required for GitHub automation.
+
+Includes:
+
+- GitHub Actions
+- Issue templates
+- Pull request templates
+- Dependabot configuration
+- Repository ownership
+
+---
+
+## assets/
+
+Stores static assets.
+
+Examples include:
+
+- logos
+- icons
+- screenshots
+- diagrams
+
+---
+
+## config/
+
+Stores project configuration files.
+
+Examples:
+
+- collector configuration
+- API settings
+- runtime options
+
+---
+
+## data/
+
+Contains local application data.
+
+Currently this includes:
+
+- SQLite database
+- cached datasets
+
+Future versions may include additional storage backends.
+
+---
+
+## docs/
+
+Contains the complete project documentation.
+
+Examples include:
+
+- Architecture
+- Development guide
+- AI context
+- Design decisions
+- Specification
+- Roadmap
+
+---
+
+## logs/
+
+Stores runtime logs.
+
+Logs help diagnose failures, monitor activity, and debug problems.
+
+---
+
+## src/
+
+Contains all application source code.
+
+Every production component lives inside this directory.
+
+---
+
+## tests/
+
+Contains automated tests.
+
+Future releases will include:
+
+- unit tests
+- integration tests
+- regression tests
+- performance tests
+
+---
+
+# Source Code Overview
+
+## core/
+
+Application startup.
+
+Responsibilities:
+
+- configuration
+- logging
+- initialization
+- boot sequence
+
+---
+
+## collectors/
+
+Responsible for gathering raw information.
+
+Examples:
+
+- X
+- websites
+- Discord
+- blockchain APIs
+
+Collectors never analyze data.
+
+They only retrieve it.
+
+---
+
+## crawlers/
+
+Responsible for navigating websites.
+
+Responsibilities include:
+
+- page discovery
+- HTML downloading
+- content extraction
+- robots handling
+
+---
+
+## discovery/
+
+Finds new crypto projects automatically.
+
+The discovery engine expands the list of monitored projects over time.
+
+---
+
+## intelligence/
+
+The analytical brain of CryptoIntel OS.
+
+Responsibilities include:
+
+- AI analysis
+- rule engine
+- signal detection
+- confidence scoring
+- feature extraction
+- pattern recognition
+
+---
+
+## database/
+
+Handles persistence.
+
+Repositories isolate SQL from business logic.
+
+---
+
+## models/
+
+Contains shared data models used throughout the application.
+
+Examples:
+
+- Project
+- Event
+- Website
+- Snapshot
+
+---
+
+## pipeline/
+
+Coordinates processing stages.
+
+Each processor performs one transformation before handing data to the next stage.
+
+---
+
+## scheduler/
+
+Controls recurring jobs.
+
+Examples:
+
+- hourly crawls
+- daily scans
+- scheduled intelligence updates
+
+---
+
+## services/
+
+Contains business logic.
+
+Services orchestrate collectors, repositories, pipelines, and intelligence modules.
+
+---
+
+## notifications/
+
+Future notification system.
+
+Will support:
+
+- Discord
+- Telegram
+- Email
+- Slack
+- Webhooks
+
+---
+
+## ui/
+
+Reserved for future dashboard implementation.
+
+---
+
+## utils/
+
+Shared helper functions used throughout the project.
+
+---
+
+## web_engine/
+
+Contains browser automation.
+
+Responsible for:
+
+- Chromium
+- Playwright
+- rendering
+- JavaScript execution
+- dynamic websites
+
+---
+
+# Data Flow
+
+CryptoIntel OS transforms raw information into actionable intelligence through a structured multi stage pipeline.
+
+Every subsystem performs one responsibility before passing data to the next stage.
+
+```
+             Raw Data
+                │
+                ▼
+      ┌─────────────────┐
+      │   Collectors    │
+      └─────────────────┘
+                │
+                ▼
+      ┌─────────────────┐
+      │    Crawlers     │
+      └─────────────────┘
+                │
+                ▼
+      ┌─────────────────┐
+      │ Data Cleaning   │
+      └─────────────────┘
+                │
+                ▼
+      ┌─────────────────┐
+      │ Intelligence    │
+      │    Engine       │
+      └─────────────────┘
+                │
+                ▼
+      ┌─────────────────┐
+      │ Rule Evaluation │
+      └─────────────────┘
+                │
+                ▼
+      ┌─────────────────┐
+      │ Signal Scoring  │
+      └─────────────────┘
+                │
+                ▼
+      ┌─────────────────┐
+      │   Database      │
+      └─────────────────┘
+                │
+                ▼
+      ┌─────────────────┐
+      │ Notifications   │
+      └─────────────────┘
+```
+
+---
+
+# Stage 1 — Collection
+
+The collection layer is responsible for retrieving raw information from external sources.
+
+Supported sources include:
+
+* X profiles
+* Official websites
+* Documentation portals
+* GitHub repositories
+* Discord servers
+* RSS feeds
+* Blockchain explorers
+
+Collectors do not analyze information.
+
+Their only responsibility is acquiring data.
+
+---
+
+# Stage 2 — Crawling
+
+The crawler expands each discovered website.
+
+Typical responsibilities include:
+
+* discovering internal pages
+* downloading HTML
+* rendering JavaScript pages
+* respecting robots.txt
+* extracting links
+* identifying important documents
+
+---
+
+# Stage 3 — Cleaning and Normalization
+
+Different projects present information differently.
+
+This layer converts all collected information into one consistent internal format.
+
+Examples include:
+
+* normalizing URLs
+* removing duplicate pages
+* standardizing timestamps
+* extracting plain text
+* cleaning HTML
+
+---
+
+# Stage 4 — Intelligence Analysis
+
+Once normalized, the Intelligence Engine begins analysis.
+
+Multiple subsystems inspect every document.
+
+Examples include:
+
+* keyword extraction
+* entity recognition
+* roadmap detection
+* audit detection
+* tokenomics analysis
+* partnership detection
+* governance analysis
+* funding announcements
+
+Each subsystem contributes findings independently.
+
+---
+
+# Stage 5 — Rule Evaluation
+
+Rules determine whether discovered information represents meaningful intelligence.
+
+Examples include:
+
+* New roadmap published
+* Token launch announced
+* Security audit completed
+* Partnership confirmed
+* Team page updated
+* Whitepaper changed
+* Documentation expanded
+
+Rules reduce false positives and improve reliability.
+
+---
+
+# Stage 6 — Confidence Scoring
+
+Every finding receives a confidence score.
+
+Confidence increases when:
+
+* multiple sources confirm the same information
+* trusted sources are involved
+* evidence is consistent
+* historical behavior supports the finding
+
+Low confidence findings remain stored but are not immediately surfaced as alerts.
+
+---
+
+# Stage 7 — Storage
+
+Validated intelligence is persisted inside the database.
+
+Stored information includes:
+
+* projects
+* events
+* snapshots
+* website changes
+* X profile history
+* intelligence findings
+
+Historical storage allows future trend analysis.
+
+---
+
+# Stage 8 — Notification
+
+Only high value intelligence becomes a notification.
+
+Examples include:
+
+* Token Generation Event announced
+* Audit released
+* New partnership
+* Governance proposal
+* Major website update
+* Team expansion
+* Funding round
+* Mainnet launch
+
+This prevents users from being overwhelmed by low value updates.
+
+---
+
+# Benefits of the Pipeline
+
+The pipeline architecture provides several important advantages.
+
+* Easy to extend
+* Easy to debug
+* Easy to test
+* Highly modular
+* AI friendly
+* Scalable
+* Maintainable
+* Production ready
+
+---
+
+# Core Components
+
+CryptoIntel OS is built around independent modules that each perform one well defined responsibility. Together they form the complete intelligence platform.
+
+---
+
+## Collectors
+
+Collectors retrieve raw information from external sources.
+
+They never analyze data.
+
+Current collector categories include:
+
+- X (Twitter)
+- Websites
+- Blockchain
+- Discord
+
+Future collectors may include:
+
+- Telegram
+- Reddit
+- YouTube
+- Medium
+- CoinGecko
+- CoinMarketCap
+
+Responsibilities:
+
+- Connect to external sources
+- Download raw information
+- Validate responses
+- Handle retries
+- Return standardized collection results
+
+---
+
+## Crawlers
+
+The crawler subsystem explores websites beyond the initial URL.
+
+Responsibilities include:
+
+- Internal page discovery
+- HTML retrieval
+- Dynamic page rendering
+- Link extraction
+- Content extraction
+- Robots.txt compliance
+
+The crawler is designed to discover documentation automatically rather than relying on manually supplied URLs.
+
+---
+
+## Discovery Engine
+
+The Discovery Engine expands the list of monitored projects.
+
+Instead of only tracking manually added projects, it searches for new crypto ecosystems automatically.
+
+Potential discovery sources include:
+
+- Launchpads
+- GitHub
+- Ecosystem directories
+- Official announcements
+- Partner pages
+- Blockchain ecosystems
+
+The goal is continuous expansion.
+
+---
+
+## Intelligence Engine
+
+The Intelligence Engine transforms raw information into meaningful intelligence.
+
+It combines multiple specialized systems.
+
+These include:
+
+- Entity extraction
+- Keyword analysis
+- Pattern recognition
+- Rule evaluation
+- AI summarization
+- Confidence scoring
+
+Every analysis module contributes independent findings.
+
+Those findings are merged into one final intelligence report.
+
+---
+
+## Rule Engine
+
+Rules define what qualifies as meaningful information.
+
+Example rules include:
+
+- Partnership detected
+- Audit published
+- Whitepaper updated
+- Tokenomics changed
+- Team expanded
+- Roadmap updated
+- Funding announced
+
+Rules reduce false positives while maintaining high recall.
+
+---
+
+## AI Layer
+
+The AI layer provides contextual understanding.
+
+Future capabilities include:
+
+- Executive summaries
+- Risk analysis
+- Project comparison
+- Trend detection
+- Ecosystem mapping
+- Sentiment analysis
+
+The architecture allows different LLM providers to be integrated without changing the surrounding pipeline.
+
+---
+
+## Pipeline
+
+The processing pipeline connects every subsystem together.
+
+Typical execution order:
+
+Collector
+
+↓
+
+Crawler
+
+↓
+
+Normalization
+
+↓
+
+Feature Extraction
+
+↓
+
+Intelligence Analysis
+
+↓
+
+Rule Evaluation
+
+↓
+
+Database
+
+↓
+
+Notification
+
+Each processor performs one transformation before passing control to the next stage.
+
+---
+
+## Database Layer
+
+The repository pattern separates storage from business logic.
+
+Benefits include:
+
+- Easier testing
+- Cleaner architecture
+- Database independence
+- Better maintainability
+
+SQLite is currently used for local development.
+
+The architecture supports migration to PostgreSQL in future releases.
+
+---
+
+## Services
+
+Services coordinate the entire application.
+
+Rather than containing business logic inside collectors or repositories, services orchestrate multiple components.
+
+Typical responsibilities include:
+
+- starting workflows
+- managing pipelines
+- coordinating repositories
+- invoking AI analysis
+- scheduling intelligence generation
+
+---
+
+## Scheduler
+
+The scheduler controls recurring tasks.
+
+Examples:
+
+- hourly scans
+- daily intelligence reports
+- website monitoring
+- profile monitoring
+- automated refresh jobs
+
+Scheduling logic remains isolated from collection logic.
+
+---
+
+## Notification Layer
+
+Notifications deliver only high value findings.
+
+Supported notification targets planned for future versions include:
+
+- Discord
+- Telegram
+- Slack
+- Email
+- Webhooks
+
+Every notification passes through confidence filtering before delivery.
+
+---
+
+## Models
+
+Models define shared data structures.
+
+Examples include:
+
+- Project
+- Event
+- Website
+- WebsiteSnapshot
+- XProfileSnapshot
+
+Using shared models keeps every subsystem speaking the same internal language.
+
+---
+
+## Web Engine
+
+The Web Engine provides browser automation.
+
+Responsibilities include:
+
+- Chromium management
+- JavaScript execution
+- Dynamic rendering
+- Screenshot generation
+- Browser lifecycle management
+
+This allows CryptoIntel OS to inspect modern web applications that cannot be crawled through HTML alone.
+
+---
+
+# Component Relationships
+
+The platform follows dependency direction.
+
+```
+Collectors
+      │
+      ▼
+ Crawlers
+      │
+      ▼
+ Discovery
+      │
+      ▼
+ Intelligence
+      │
+      ▼
+ Pipeline
+      │
+      ▼
+ Database
+      │
+      ▼
+ Notifications
+```
+
+Each layer only depends on the layer directly beneath it.
+
+This architecture minimizes coupling and makes future maintenance significantly easier.
+
+---
+
+# Development Roadmap
+
+CryptoIntel OS is being developed in multiple phases. Each phase builds on the previous one while keeping the architecture stable and modular.
+
+---
+
+# Phase 1 — Foundation
+
+Status: Completed
+
+Objectives:
+
+- Create project architecture
+- Define folder structure
+- Build configuration system
+- Implement logging
+- Create collector interfaces
+- Implement crawler framework
+- Design database layer
+- Build service architecture
+- Create documentation
+
+Deliverables:
+
+- Modular codebase
+- SQLite database
+- Configuration management
+- Documentation
+- GitHub workflows
+
+---
+
+# Phase 2 — Data Collection
+
+Status: In Progress
+
+Objectives:
+
+- Website collector
+- X collector
+- Discord collector
+- Blockchain collector
+- GitHub collector
+
+Goals:
+
+- Collect structured project data
+- Store snapshots
+- Detect changes
+
+---
+
+# Phase 3 — Crawling Engine
+
+Planned Features
+
+- Recursive website crawling
+- JavaScript rendering
+- Robots.txt support
+- Sitemap discovery
+- Intelligent page prioritization
+- Duplicate detection
+- Incremental crawling
+
+Expected Outcome
+
+A crawler capable of discovering important project pages automatically.
+
+---
+
+# Phase 4 — Intelligence Engine
+
+Planned Features
+
+- Keyword extraction
+- Entity extraction
+- Pattern recognition
+- Rule engine
+- Confidence scoring
+- AI summarization
+
+Expected Outcome
+
+Transform raw website content into actionable intelligence.
+
+---
+
+# Phase 5 — AI Integration
+
+Planned Features
+
+- LLM summaries
+- Project comparison
+- Risk assessment
+- Trend analysis
+- Ecosystem mapping
+- Relationship detection
+
+Supported providers may include:
+
+- OpenAI
+- Anthropic
+- Local models
+
+---
+
+# Phase 6 — Automation
+
+Planned Features
+
+- Job scheduler
+- Automatic rescans
+- Incremental updates
+- Background workers
+- Queue management
+
+Expected Outcome
+
+A fully autonomous monitoring system.
+
+---
+
+# Phase 7 — Notifications
+
+Planned Features
+
+- Discord alerts
+- Telegram alerts
+- Slack integration
+- Email notifications
+- Webhooks
+
+Only high confidence intelligence will generate alerts.
+
+---
+
+# Phase 8 — Dashboard
+
+Planned Features
+
+- Project explorer
+- Search
+- Filters
+- Timeline
+- Analytics
+- Intelligence reports
+- Trend visualization
+
+---
+
+# Phase 9 — Scalability
+
+Future Improvements
+
+- PostgreSQL support
+- Redis caching
+- Multi worker processing
+- Cloud deployment
+- Distributed crawling
+- Horizontal scaling
+
+---
+
+# Long Term Vision
+
+CryptoIntel OS aims to become a complete intelligence platform capable of monitoring thousands of crypto projects simultaneously.
+
+The long term objective is to provide developers, researchers, investors, and security analysts with reliable, continuously updated intelligence generated from publicly available sources.
+
+Every new feature should support this vision while preserving the modular architecture established in the early phases.
+
+---
+
+# AI Agent Handoff Guide
+
+This section is intended for future AI coding agents and developers who continue development of CryptoIntel OS.
+
+The objective is to make it possible to resume work without reverse engineering the project.
+
+---
+
+# Project Goal
+
+CryptoIntel OS is an automated intelligence platform for discovering, monitoring, analyzing, and tracking crypto and Web3 projects.
+
+The system continuously gathers information from multiple public sources and transforms that information into structured intelligence.
+
+The architecture is intentionally modular so every subsystem can evolve independently.
+
+---
+
+# Primary Design Principles
+
+Every architectural decision should preserve the following principles.
+
+## Separation of Responsibilities
+
+Each module performs exactly one responsibility.
+
+Collectors collect.
+
+Crawlers crawl.
+
+Pipelines process.
+
+Repositories store.
+
+Services coordinate.
+
+Rules evaluate.
+
+AI analyzes.
+
+Notifications deliver.
+
+Never merge these responsibilities together.
+
+---
+
+## Low Coupling
+
+Every package should depend on as few other packages as possible.
+
+Avoid circular imports.
+
+Avoid tightly connected components.
+
+Future modules should be replaceable without rewriting the system.
+
+---
+
+## High Cohesion
+
+Related functionality belongs together.
+
+For example:
+
+Website crawling belongs inside:
+
+src/crawlers
+
+NOT
+
+src/services
+
+Likewise, AI analysis belongs inside:
+
+src/intelligence
+
+NOT
+
+src/collectors
+
+---
+
+## Interface First Development
+
+Whenever introducing a new subsystem:
+
+1. Define interfaces
+
+2. Build implementations
+
+3. Register implementations
+
+4. Connect them into the pipeline
+
+This allows multiple implementations to exist simultaneously.
+
+---
+
+# Preferred Development Workflow
+
+Whenever implementing a new feature:
+
+Step 1
+
+Design the models.
+
+↓
+
+Step 2
+
+Create repositories.
+
+↓
+
+Step 3
+
+Implement services.
+
+↓
+
+Step 4
+
+Connect pipeline.
+
+↓
+
+Step 5
+
+Expose scheduling.
+
+↓
+
+Step 6
+
+Add documentation.
+
+↓
+
+Step 7
+
+Write tests.
+
+---
+
+# Coding Philosophy
+
+Prefer:
+
+Small classes
+
+Small files
+
+Small methods
+
+Single responsibility
+
+Composition over inheritance
+
+Explicit naming
+
+Avoid:
+
+Large utility files
+
+Hidden dependencies
+
+Global state
+
+Deep inheritance
+
+Monolithic classes
+
+---
+
+# Naming Conventions
+
+Classes
+
+PascalCase
+
+Example
+
+WebsiteCollector
+
+ProjectRepository
+
+SignalFactory
+
+Functions
+
+snake_case
+
+Example
+
+collect_projects()
+
+generate_summary()
+
+save_snapshot()
+
+Variables
+
+snake_case
+
+Constants
+
+UPPER_CASE
+
+Modules
+
+snake_case.py
+
+---
+
+# Folder Responsibilities
+
+Never move responsibilities across folders without architectural justification.
+
+Each package has a clearly defined purpose.
+
+core
+
+Application startup.
+
+collectors
+
+Raw data acquisition.
+
+crawlers
+
+Website traversal.
+
+database
+
+Persistence.
+
+services
+
+Business orchestration.
+
+pipeline
+
+Processing.
+
+intelligence
+
+Analysis.
+
+notifications
+
+Delivery.
+
+---
+
+# Database Rules
+
+Repositories should contain SQL.
+
+Services should never contain SQL.
+
+Business logic should never depend on SQL syntax.
+
+Changing the database backend should not require changing services.
+
+---
+
+# Intelligence Rules
+
+The intelligence engine should remain provider independent.
+
+LLM specific code should always remain isolated.
+
+Future AI providers should be interchangeable.
+
+---
+
+# Pipeline Rules
+
+Every processor should:
+
+Receive input.
+
+Process input.
+
+Return output.
+
+Avoid processors that modify unrelated state.
+
+The pipeline should remain deterministic whenever possible.
+
+---
+
+# Testing Expectations
+
+Every future feature should include:
+
+Unit tests
+
+Integration tests where appropriate
+
+Meaningful logging
+
+Documentation updates
+
+---
+
+# Backwards Compatibility
+
+Avoid breaking existing interfaces.
+
+If an interface must change:
+
+Deprecate first.
+
+Replace later.
+
+Remove only after migration.
+
+---
+
+# Future AI Development
+
+Future AI coding agents should prioritize:
+
+Maintainability
+
+Readability
+
+Scalability
+
+Performance
+
+Documentation
+
+Backward compatibility
+
+Every implementation should preserve the modular architecture established by the project.
+
+---
+
+# Contribution Guide
+
+Contributions are welcome.
+
+CryptoIntel OS follows a modular architecture, so contributors should preserve the separation of responsibilities throughout the codebase.
+
+---
+
+## Before Contributing
+
+Please ensure that you:
+
+- Read the project architecture documentation
+- Review the AI Agent Handoff Guide
+- Understand the existing folder structure
+- Follow the coding style
+
+---
+
+## Development Process
+
+1. Fork the repository.
+
+2. Create a feature branch.
+
+Example:
+
+feature/new-collector
+
+bugfix/database-fix
+
+improvement/intelligence-engine
+
+3. Implement the feature.
+
+4. Test the implementation.
+
+5. Update documentation if necessary.
+
+6. Submit a Pull Request.
+
+---
+
+## Pull Request Guidelines
+
+Each Pull Request should:
+
+- Solve one problem only
+- Include clear commit messages
+- Maintain backward compatibility where possible
+- Include documentation updates
+- Pass all automated tests
+
+---
+
+## Coding Standards
+
+Prefer:
+
+- Readable code
+- Small functions
+- Modular design
+- Clear naming
+- Dependency injection
+- Type hints
+- Docstrings
+
+Avoid:
+
+- Massive classes
+- Duplicate code
+- Hidden dependencies
+- Circular imports
+- Hard coded values
+
+---
+
+## Documentation
+
+Whenever introducing a new feature:
+
+- Update README.md
+- Update Architecture documentation
+- Update Roadmap if applicable
+- Update AI Context documentation
+
+Documentation should evolve together with the code.
+
+---
+
+## Issue Reporting
+
+Bug reports should include:
+
+- Operating system
+- Python version
+- Steps to reproduce
+- Expected behavior
+- Actual behavior
+- Error logs if available
+
+---
+
+## Feature Requests
+
+Feature requests should explain:
+
+- The problem being solved
+- The proposed solution
+- Alternative approaches
+- Expected benefits
+
+---
+
+## Code Reviews
+
+Reviews should prioritize:
+
+- Maintainability
+- Scalability
+- Readability
+- Performance
+- Security
+
+Personal coding style should never take priority over project consistency.
+
+---
+
+# Repository Checklist
+
+## Documentation
+
+- [x] README
+- [x] Architecture
+- [x] Development Guide
+- [x] AI Context
+- [x] Roadmap
+- [x] Project State
+- [x] Coding Standards
+
+---
+
+## Source Code
+
+- [x] Modular Architecture
+- [x] Configuration System
+- [x] Logging
+- [x] Collector Framework
+- [x] Crawler Framework
+- [x] Database Layer
+- [x] Service Layer
+- [x] Pipeline Framework
+
+---
+
+## Quality
+
+- [x] GitHub Workflows
+- [x] Dependabot
+- [x] Issue Templates
+- [x] Pull Request Template
+- [x] CODEOWNERS
+
+---
+
+## Future Work
+
+- [ ] Complete Collectors
+- [ ] Complete Crawlers
+- [ ] AI Integration
+- [ ] Notification System
+- [ ] Dashboard
+- [ ] Cloud Deployment
+- [ ] PostgreSQL Support
+- [ ] API Layer
+
+---
+
+# Final Notes
+
+CryptoIntel OS is designed as a long term intelligence platform for monitoring and analyzing crypto ecosystems.
+
+The project emphasizes maintainability, modularity, scalability, and clear engineering practices over rapid feature development.
+
+Every subsystem has been intentionally separated so that individual components can evolve independently without affecting the overall architecture.
+
+This repository is structured to support long term development by both human contributors and AI coding agents.
+
+As the project evolves, documentation should remain synchronized with implementation to ensure the repository continues to serve as both a codebase and a technical knowledge base.
+
+Thank you for contributing to CryptoIntel OS.
+
+# CryptoIntel OS
+
 <p align="center">
 
 **An Autonomous Intelligence Platform for Monitoring the Crypto Ecosystem**
