@@ -1,0 +1,22 @@
+{
+    "id": "github",
+    "name": "GitHub",
+    "category": "Development",
+    "description": "Repository intelligence and developer activity.",
+    "collector": "GitHubCollector",
+    "enabled": true,
+    "priority": 10,
+    "evidence_weight": 10,
+    "authentication": true,
+    "access_method": "REST API",
+    "rate_limit": 5000,
+    "update_interval": 300,
+    "supported_chains": [],
+    "tags": [
+        "repositories",
+        "developers",
+        "opensource",
+        "commits",
+        "organizations"
+    ]
+}

@@ -1,5 +1,8 @@
 from datetime import datetime
 
+from src.catalog.catalog_loader import catalog_loader
+from src.factory.collector_factory import collector_factory
+
 from src.orchestrator.collector_registry import (
     collector_registry,
 )
@@ -14,13 +17,23 @@ from src.orchestrator.health_monitor import (
 
 
 class IntelligenceOrchestrator:
-    """
-    Runs every registered collector.
-    """
 
-    def register(self, collector):
+    def load_collectors(self):
 
-        collector_registry.register(collector)
+        sources = catalog_loader.load()
+
+        for source in sources:
+
+            if not source.enabled:
+                continue
+
+            collector = collector_factory.create(
+                source.collector
+            )
+
+            collector_registry.register(
+                collector
+            )
 
     def run(self):
 

@@ -1,227 +1,206 @@
-# CryptoIntel OS Architecture
+# Autonomous First Principle
+
+CryptoIntel OS is an autonomous intelligence system.
+
+It does not wait for instructions.
+
+It continuously:
+
+- Discovers
+- Collects
+- Correlates
+- Learns
+- Analyzes
+- Decides
+- Distributes intelligence
+
+Human interaction is optional.
+
+The system is designed to operate continuously with minimal intervention.
+
+# CryptoIntel OS
+## System Architecture
+
+Version: 1.0
 
 ---
 
-# Overview
+# Philosophy
 
-CryptoIntel OS is designed as a modular intelligence platform for continuously monitoring blockchain projects.
+CryptoIntel OS is designed around one idea:
 
-Rather than functioning as a traditional web scraper, CryptoIntel OS separates every responsibility into dedicated components that communicate through clearly defined interfaces.
+Everything is Intelligence.
 
-This architecture provides the following advantages:
+Collectors do not make decisions.
 
-- High modularity
-- Easy maintenance
-- Independent testing
-- Clear separation of concerns
-- Easy expansion
-- AI friendly development
-- Long term scalability
+Collectors collect evidence.
 
-The platform is intentionally designed so that new collectors, intelligence modules, and services can be added without changing existing components.
+The AI makes decisions.
 
 ---
 
 # High Level Architecture
 
-```
-                         User
-
-                           │
-
-                           ▼
-
-                     python main.py
-
-                           │
-
-                           ▼
-
-                    Application Startup
-
-                           │
-
-      ┌────────────────────┼────────────────────┐
-
-      ▼                    ▼                    ▼
-
- Configuration        Logger             Database
-
-      │                    │                    │
-
-      └────────────────────┼────────────────────┘
-
-                           ▼
-
-                      Scheduler
-
-                           │
-
-                           ▼
-
-                  Discovery Engine
-
-                           │
-
-                           ▼
-
-                 Collector Registry
-
-                           │
-
-        ┌──────────────────┼──────────────────┐
-
-        ▼                  ▼                  ▼
-
-   Website Collector   X Collector     Future Collectors
-
-        │                  │
-
-        ▼                  ▼
-
-     Raw Website      Raw X Profile
-
-        └──────────────────┬──────────────────┘
-
-                           ▼
-
-                  Processing Pipeline
-
-                           │
-
-                           ▼
-
-                 Intelligence Engine
-
-                           │
-
-     ┌─────────────────────┼─────────────────────┐
-
-     ▼                     ▼                     ▼
-
-Normalizer          Extractors          Change Detector
-
-     │                     │                     │
-
-     └─────────────────────┼─────────────────────┘
-
-                           ▼
-
-                     Rule Engine
-
-                           │
-
-                           ▼
-
-                      Findings
-
-                           │
-
-                           ▼
-
-                   Service Layer
-
-                           │
-
-                           ▼
-
-                   Repository Layer
-
-                           │
-
-                           ▼
-
-                    SQLite Database
-
-                           │
-
-                           ▼
-
-               Future Notification System
-```
+                    AI Layer
+                       │
+                       ▼
+          Signal Correlation Engine
+                       │
+                       ▼
+            Intelligence Pipeline
+                       │
+                       ▼
+             Discovery Engine
+                       │
+                       ▼
+      Intelligence Query Engine (IQE)
+                       │
+                       ▼
+     Collector Orchestrator Framework
+                       │
+                       ▼
+ GitHub
+ Twitter
+ Discord
+ Telegram
+ Websites
+ Wallets
+ Blockchains
+ Launchpads
 
 ---
 
-# Architectural Principles
+# System Modules
 
-CryptoIntel OS follows several core principles that guide every implementation decision.
+## Configuration
 
-## Separation of Concerns
+Responsible for
 
-Every component has exactly one responsibility.
-
-Examples:
-
-- Collectors collect.
-- Crawlers download.
-- Normalizers normalize.
-- Extractors extract.
-- Rules analyze.
-- Services coordinate.
-- Repositories store.
-- Scheduler orchestrates.
-
-No component should perform responsibilities that belong to another layer.
+- Environment
+- Secrets
+- API Keys
+- Runtime Settings
 
 ---
 
-## Modularity
+## Query Engine
 
-Every major feature is implemented as an independent module.
+Responsible for
 
-This allows developers to:
+- Search Keywords
+- Boolean Queries
+- Ecosystem Packs
+- Search Strategies
+- AI Query Templates
 
-- replace modules
-- extend functionality
-- write isolated tests
-- simplify debugging
+Output
 
-without affecting unrelated components.
+Search Missions
 
 ---
 
-## Extensibility
+## Collectors
 
-The architecture is intentionally open for expansion.
+Responsible for gathering raw intelligence.
 
-Examples of future additions include:
+Collectors never analyse.
 
-- Telegram Collector
-- Discord Collector
+Collectors never score.
+
+Collectors only collect.
+
+Examples
+
 - GitHub Collector
-- RSS Collector
-- AI Scoring Engine
-- Wallet Monitor
-- Governance Monitor
-
-Adding these modules should require minimal changes to the existing codebase.
+- Twitter Collector
+- Discord Collector
+- Wallet Collector
+- Website Collector
 
 ---
 
-## Reusability
+## Discovery Engine
 
-Shared logic is implemented only once.
+Responsible for
 
-For example:
-
-- Website normalization is performed once.
-- Documentation detection is implemented once.
-- Event recording is centralized.
-
-This prevents duplicated code throughout the project.
+- Normalizing data
+- Cleaning data
+- Removing duplicates
+- Creating Intelligence Events
 
 ---
 
-# Runtime Flow
+## Intelligence Pipeline
 
-Every monitoring cycle follows the same execution sequence.
+Responsible for
 
-```
-Application Startup
+Passing intelligence between modules.
+
+---
+
+## Signal Correlation Engine
+
+Responsible for
+
+Combining evidence from multiple collectors.
+
+Example
+
+GitHub
+
++
+
+Website
+
++
+
+Twitter
+
++
+
+Wallet
 
 ↓
 
-Scheduler
+One Project
+
+---
+
+## AI Layer
+
+Responsible for
+
+- Classification
+- Scoring
+- Risk Detection
+- Scam Detection
+- Narrative Detection
+- Project Summary
+- Recommendation
+
+---
+
+## Notification Engine
+
+Responsible for delivering intelligence.
+
+Destinations
+
+- Desktop
+- Discord
+- Telegram
+- Email
+- Webhooks
+
+---
+
+# Data Flow
+
+Query Engine
+
+↓
+
+Collector
 
 ↓
 
@@ -229,271 +208,69 @@ Discovery Engine
 
 ↓
 
-Collector Registry
+Signal
 
 ↓
 
-Collectors
+Correlation Engine
 
 ↓
 
-Pipeline
+Project Intelligence Profile
 
 ↓
 
-Normalizer
+AI
 
 ↓
 
-Extractor
-
-↓
-
-Rule Engine
-
-↓
-
-Findings
-
-↓
-
-Services
-
-↓
-
-Repositories
-
-↓
-
-Database
-```
+Notifications
 
 ---
 
-# Package Responsibilities
+# Intelligence Sources
 
-## core
+Current
 
-Responsible for:
-
-- startup
-- configuration
-- logging
-- application lifecycle
-- initialization
-
----
-
-## collectors
-
-Responsible for communicating with external platforms.
-
-Collectors should never contain business logic.
-
-Their only job is retrieving raw information.
-
----
-
-## crawlers
-
-Responsible for downloading website content.
-
-Supports:
-
-- Requests
-- Playwright
-
-The crawler selects the highest quality HTML before forwarding it.
-
----
-
-## discovery
-
-Responsible for determining which projects should be monitored.
-
-Current implementation:
-
-- Database backed discovery
-
-Future implementations:
-
-- CoinGecko
-- CoinMarketCap
 - GitHub
+
+Planned
+
+- Twitter
+- Discord
+- Telegram
+- Websites
+- Wallets
 - Launchpads
+- Blockchains
+- News
+- RSS
+- Domains
 
 ---
 
-## pipeline
+# Design Principles
 
-Responsible for routing collector output into the appropriate intelligence processor.
+Every module must be
 
-The pipeline isolates collectors from downstream processing.
-
----
-
-## intelligence
-
-The intelligence package transforms raw information into structured knowledge.
-
-Submodules include:
-
-- Normalizers
-- Extractors
-- Rule Engine
-- Change Detector
-
-Future additions:
-
-- AI Analysis
-- Risk Scoring
-- Entity Recognition
+- Independent
+- Testable
+- Replaceable
+- Extensible
+- Observable
 
 ---
 
-## services
+# Future
 
-Services coordinate business logic.
+Future modules should plug into the architecture without modifying existing collectors.
 
-Examples include:
+The architecture should support hundreds of intelligence sources.
 
-- snapshot management
-- event generation
-- intelligence processing
-- project management
+The architecture should support millions of intelligence events.
 
-Services never communicate directly with users.
+The architecture should support distributed execution.
 
----
+The architecture should support AI agents.
 
-## database
-
-Responsible for persistent storage.
-
-Repositories provide a clean interface between business logic and SQLite.
-
----
-
-## scheduler
-
-Controls execution order.
-
-Responsibilities include:
-
-- loading projects
-- executing collectors
-- forwarding results
-- reporting progress
-
-Future scheduler features:
-
-- parallel execution
-- retries
-- rate limiting
-- scheduling intervals
-
----
-
-## models
-
-Contains shared business objects.
-
-Examples:
-
-- Project
-- Event
-- WebsiteSnapshot
-- XProfileSnapshot
-- Finding
-
-Models provide consistent data structures across the application.
-
----
-
-## web_engine
-
-Provides centralized browser management.
-
-Responsibilities include:
-
-- launching Chromium
-- rendering JavaScript
-- managing browser lifetime
-- releasing browser resources
-
-Centralizing browser management reduces overhead.
-
----
-
-# Data Flow
-
-The following diagram illustrates how information moves through the platform.
-
-```
-Raw Data
-
-↓
-
-Normalization
-
-↓
-
-Extraction
-
-↓
-
-Rule Evaluation
-
-↓
-
-Findings
-
-↓
-
-Events
-
-↓
-
-Repositories
-
-↓
-
-SQLite
-```
-
----
-
-# Future Architecture
-
-The current architecture has been intentionally designed to support future expansion.
-
-Upcoming modules include:
-
-- AI Intelligence Layer
-- Notification Engine
-- REST API
-- Dashboard
-- Distributed Workers
-- Cloud Storage
-- PostgreSQL Support
-- Plugin System
-- Blockchain Collectors
-
-None of these additions should require major restructuring because the existing architecture already separates responsibilities into independent layers.
-
----
-
-# Architecture Goals
-
-The long term architecture aims to achieve:
-
-- Modular codebase
-- Maintainable components
-- Testable modules
-- AI friendly structure
-- High scalability
-- Easy onboarding
-- Independent feature development
-- Long term sustainability
-
-Every future contribution should preserve these goals.
+The architecture should support cloud deployment.
