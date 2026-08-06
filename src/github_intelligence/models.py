@@ -66,3 +66,4 @@ class Release:
     draft: bool = False
     published_at: str | None = None
     html_url: str | None = None
+    author_login: str | None = None
