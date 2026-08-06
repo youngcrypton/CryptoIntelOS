@@ -4,6 +4,7 @@ from collections.abc import Mapping
 from dataclasses import dataclass, field
 from typing import Any
 
+from ..commit_analyzer import CommitIntelligence
 from ..contributor_analyzer import ContributorIntelligence
 from ..models import Repository
 from .activity_analyzer import ActivityAnalyzer
@@ -20,6 +21,7 @@ class RepositoryAnalysis:
     activity_metrics: dict[str, int | float | str | None]
     metadata: dict[str, object]
     contributor_intelligence: list[ContributorIntelligence] = field(default_factory=list)
+    commit_intelligence: CommitIntelligence | None = None
 
 
 class RepositoryAnalyzer:
@@ -42,6 +44,7 @@ class RepositoryAnalyzer:
         repository: Repository,
         metadata: Mapping[str, Any] | None = None,
         contributors: list[ContributorIntelligence] | None = None,
+        commits: CommitIntelligence | None = None,
     ) -> RepositoryAnalysis:
         """Analyze a repository using metadata supplied by a caller or API layer."""
 
@@ -51,4 +54,5 @@ class RepositoryAnalyzer:
             activity_metrics=self.activity_analyzer.analyze(repository, metadata),
             metadata=self.metadata_extractor.extract(repository, metadata),
             contributor_intelligence=list(contributors or []),
+            commit_intelligence=commits,
         )
