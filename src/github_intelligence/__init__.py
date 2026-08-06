@@ -12,6 +12,12 @@ from .repository_scoring import (
     RepositoryScoringEngine,
     ScoreExplanation,
 )
+from .signal_engine import (
+    GitHubIntelligenceSignal,
+    GitHubSignalEngine,
+    GitHubSignalRule,
+    SignalRuleMatch,
+)
 
 __all__ = [
     "Commit",
@@ -24,6 +30,9 @@ __all__ = [
     "DependencyIntelligence",
     "GitHubClient",
     "GitHubConfig",
+    "GitHubIntelligenceSignal",
+    "GitHubSignalEngine",
+    "GitHubSignalRule",
     "Organization",
     "Release",
     "ReleaseAnalyzer",
@@ -32,4 +41,5 @@ __all__ = [
     "RepositoryScore",
     "RepositoryScoringEngine",
     "ScoreExplanation",
+    "SignalRuleMatch",
 ]
