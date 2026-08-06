@@ -7,6 +7,11 @@ from .contributor_analyzer import ContributorAnalyzer, ContributorIntelligence
 from .dependency_analyzer import DependencyAnalyzer, DependencyIntelligence
 from .models import Commit, Contributor, Organization, Release, Repository
 from .release_analyzer import ReleaseAnalyzer, ReleaseIntelligence
+from .repository_scoring import (
+    RepositoryScore,
+    RepositoryScoringEngine,
+    ScoreExplanation,
+)
 
 __all__ = [
     "Commit",
@@ -24,4 +29,7 @@ __all__ = [
     "ReleaseAnalyzer",
     "ReleaseIntelligence",
     "Repository",
+    "RepositoryScore",
+    "RepositoryScoringEngine",
+    "ScoreExplanation",
 ]
