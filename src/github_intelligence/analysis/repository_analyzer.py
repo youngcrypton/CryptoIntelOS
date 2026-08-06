@@ -6,6 +6,7 @@ from typing import Any
 
 from ..commit_analyzer import CommitIntelligence
 from ..contributor_analyzer import ContributorIntelligence
+from ..dependency_analyzer import DependencyIntelligence
 from ..models import Repository
 from ..release_analyzer import ReleaseIntelligence
 from .activity_analyzer import ActivityAnalyzer
@@ -24,6 +25,7 @@ class RepositoryAnalysis:
     contributor_intelligence: list[ContributorIntelligence] = field(default_factory=list)
     commit_intelligence: CommitIntelligence | None = None
     release_intelligence: ReleaseIntelligence | None = None
+    dependency_intelligence: DependencyIntelligence | None = None
 
 
 class RepositoryAnalyzer:
@@ -48,6 +50,7 @@ class RepositoryAnalyzer:
         contributors: list[ContributorIntelligence] | None = None,
         commits: CommitIntelligence | None = None,
         releases: ReleaseIntelligence | None = None,
+        dependencies: DependencyIntelligence | None = None,
     ) -> RepositoryAnalysis:
         """Analyze a repository using metadata supplied by a caller or API layer."""
 
@@ -59,4 +62,5 @@ class RepositoryAnalyzer:
             contributor_intelligence=list(contributors or []),
             commit_intelligence=commits,
             release_intelligence=releases,
+            dependency_intelligence=dependencies,
         )
