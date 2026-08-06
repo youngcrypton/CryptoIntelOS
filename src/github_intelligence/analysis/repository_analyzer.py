@@ -1,9 +1,10 @@
 """Coordinator for repository metadata and activity analysis."""
 
 from collections.abc import Mapping
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any
 
+from ..contributor_analyzer import ContributorIntelligence
 from ..models import Repository
 from .activity_analyzer import ActivityAnalyzer
 from .metadata_extractor import MetadataExtractor
@@ -18,6 +19,7 @@ class RepositoryAnalysis:
     technologies: list[str]
     activity_metrics: dict[str, int | float | str | None]
     metadata: dict[str, object]
+    contributor_intelligence: list[ContributorIntelligence] = field(default_factory=list)
 
 
 class RepositoryAnalyzer:
@@ -39,6 +41,7 @@ class RepositoryAnalyzer:
         self,
         repository: Repository,
         metadata: Mapping[str, Any] | None = None,
+        contributors: list[ContributorIntelligence] | None = None,
     ) -> RepositoryAnalysis:
         """Analyze a repository using metadata supplied by a caller or API layer."""
 
@@ -47,4 +50,5 @@ class RepositoryAnalyzer:
             technologies=self.technology_detector.detect(repository, metadata),
             activity_metrics=self.activity_analyzer.analyze(repository, metadata),
             metadata=self.metadata_extractor.extract(repository, metadata),
+            contributor_intelligence=list(contributors or []),
         )
