@@ -17,14 +17,18 @@ from src.intelligence_query_engine.twitter.ecosystems.berachain import BERACHAIN
 from src.intelligence_query_engine.twitter.ecosystems.hyperliquid import HYPERLIQUID_QUERY_PACK
 from src.intelligence_query_engine.twitter.ecosystems.sei import SEI_QUERY_PACK
 from src.intelligence_query_engine.twitter.ecosystems.celestia import CELESTIA_QUERY_PACK
-from src.intelligence_query_engine.twitter.ecosystems.nft import NFT_QUERY_PACK
-from src.intelligence_query_engine.twitter.ecosystems.funding import FUNDING_QUERY_PACK
-from src.intelligence_query_engine.twitter.ecosystems.ai import AI_QUERY_PACK
+from src.intelligence_query_engine.twitter.ecosystems.starknet import STARKNET_QUERY_PACK
+from src.intelligence_query_engine.twitter.ecosystems.zksync import ZKSYNC_QUERY_PACK
+from src.intelligence_query_engine.twitter.ecosystems.linea import LINEA_QUERY_PACK
+from src.intelligence_query_engine.twitter.ecosystems.scroll import SCROLL_QUERY_PACK
+from src.intelligence_query_engine.twitter.ecosystems.mantle import MANTLE_QUERY_PACK
+from src.intelligence_query_engine.twitter.ecosystems.injective import INJECTIVE_QUERY_PACK
+from src.intelligence_query_engine.twitter.ecosystems.sonic import SONIC_QUERY_PACK
 
 
-class QueryLoader:
+class EcosystemLoader:
 
-    def load_ecosystems(self):
+    def load(self):
 
         return {
 
@@ -47,11 +51,15 @@ class QueryLoader:
             "hyperliquid": HYPERLIQUID_QUERY_PACK,
             "sei": SEI_QUERY_PACK,
             "celestia": CELESTIA_QUERY_PACK,
-            "nft": NFT_QUERY_PACK,
-            "funding": FUNDING_QUERY_PACK,
-            "ai": AI_QUERY_PACK,
+            "starknet": STARKNET_QUERY_PACK,
+            "zksync": ZKSYNC_QUERY_PACK,
+            "linea": LINEA_QUERY_PACK,
+            "scroll": SCROLL_QUERY_PACK,
+            "mantle": MANTLE_QUERY_PACK,
+            "injective": INJECTIVE_QUERY_PACK,
+            "sonic": SONIC_QUERY_PACK,
 
         }
 
 
-query_loader = QueryLoader()
+ecosystem_loader = EcosystemLoader()
