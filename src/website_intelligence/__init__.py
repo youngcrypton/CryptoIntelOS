@@ -13,6 +13,7 @@ from .discovery import (
 )
 from .analysis import AnalysisOutput, WebsiteAnalysisEngine
 from .signals import SignalOutput, WebsiteSignalEngine
+from .vertical_slice import WebsiteVerticalSlice, WebsiteVerticalSliceResult
 
 __all__ = (
     "Document",
@@ -34,4 +35,6 @@ __all__ = (
     "WebsiteRuntimeIntegration",
     "SignalOutput",
     "WebsiteSignalEngine",
+    "WebsiteVerticalSlice",
+    "WebsiteVerticalSliceResult",
 )
