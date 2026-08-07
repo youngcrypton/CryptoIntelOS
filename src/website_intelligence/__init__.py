@@ -5,10 +5,19 @@ from .collector import WebsiteCollector
 from .metadata import WEBSITE_INTEGRATION_METADATA
 from .models import Document, Link, Page, Website
 from .runtime import WebsiteRuntimeIntegration
+from .discovery import (
+    DiscoveredEntity,
+    DiscoveredEntityType,
+    DiscoveryResult,
+    WebsiteDiscoveryEngine,
+)
 
 __all__ = (
     "Document",
     "DocumentAdapter",
+    "DiscoveredEntity",
+    "DiscoveredEntityType",
+    "DiscoveryResult",
     "Link",
     "LinkAdapter",
     "Page",
@@ -17,5 +26,6 @@ __all__ = (
     "Website",
     "WebsiteAdapter",
     "WebsiteCollector",
+    "WebsiteDiscoveryEngine",
     "WebsiteRuntimeIntegration",
 )
