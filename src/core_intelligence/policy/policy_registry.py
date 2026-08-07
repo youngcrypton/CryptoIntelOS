@@ -1,0 +1,6 @@
+from typing import Protocol
+from uuid import UUID
+from .policy import Policy
+class PolicyRegistry(Protocol):
+    def register(self, policy: Policy) -> UUID: ...
+    def get(self, policy_id: UUID) -> Policy | None: ...
