@@ -12,6 +12,7 @@ from .discovery import (
     WebsiteDiscoveryEngine,
 )
 from .analysis import AnalysisOutput, WebsiteAnalysisEngine
+from .signals import SignalOutput, WebsiteSignalEngine
 
 __all__ = (
     "Document",
@@ -31,4 +32,6 @@ __all__ = (
     "WebsiteCollector",
     "WebsiteDiscoveryEngine",
     "WebsiteRuntimeIntegration",
+    "SignalOutput",
+    "WebsiteSignalEngine",
 )
