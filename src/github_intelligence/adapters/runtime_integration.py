@@ -47,10 +47,11 @@ class GitHubRuntimeIntegration:
     ) -> GitHubRuntimeResult:
         observation = self.observations.to_observation(repository)
         entity_reference = f"github:repository:{repository.id}"
-        evidence_items = [
+        evidence_items = [self.evidence.repository(repository, entity_reference=entity_reference)]
+        evidence_items.extend(
             self.evidence.contributor(item, entity_reference=entity_reference)
             for item in analysis.contributor_intelligence
-        ]
+        )
         if organization is not None:
             evidence_items.append(
                 self.evidence.organization(

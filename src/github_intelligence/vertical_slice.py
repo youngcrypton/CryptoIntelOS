@@ -1,0 +1,76 @@
+from collections.abc import Mapping
+from dataclasses import dataclass
+from typing import Any, TextIO
+import sys
+
+from src.runtime.synchronous import SynchronousRuntime, SynchronousRuntimeResult
+
+from .adapters import GitHubRuntimeIntegration, GitHubRuntimeResult
+from .analysis.repository_analyzer import RepositoryAnalyzer
+from .models import Repository
+from .repository_scoring import RepositoryScoringEngine
+from .signal_engine import GitHubSignalEngine
+
+
+@dataclass(frozen=True, slots=True)
+class GitHubVerticalSliceResult:
+    canonical: GitHubRuntimeResult
+    runtime: SynchronousRuntimeResult
+    console_summary: str
+
+
+class GitHubVerticalSlice:
+    """Run one GitHub repository through the complete synchronous platform."""
+
+    def __init__(self) -> None:
+        self.repository_analyzer = RepositoryAnalyzer()
+        self.scoring_engine = RepositoryScoringEngine()
+        self.signal_engine = GitHubSignalEngine()
+        self.adapters = GitHubRuntimeIntegration()
+        self.runtime = SynchronousRuntime()
+
+    def run(
+        self,
+        repository: Repository,
+        metadata: Mapping[str, Any] | None = None,
+        *,
+        output: TextIO | None = None,
+    ) -> GitHubVerticalSliceResult:
+        analysis = self.repository_analyzer.analyze(repository, metadata)
+        score = self.scoring_engine.score(analysis)
+        github_signals = tuple(self.signal_engine.generate(analysis, score))
+        canonical = self.adapters.process(repository, analysis, score, github_signals)
+        objects = (
+            canonical.observation,
+            *canonical.evidence,
+            canonical.finding,
+            canonical.assessment,
+            *canonical.signals,
+        )
+        runtime = self.runtime.execute(f"github:{repository.id}", objects)
+        summary = self._summary(repository, canonical, runtime)
+        print(summary, file=output or sys.stdout)
+        return GitHubVerticalSliceResult(canonical, runtime, summary)
+
+    @staticmethod
+    def _summary(
+        repository: Repository,
+        canonical: GitHubRuntimeResult,
+        runtime: SynchronousRuntimeResult,
+    ) -> str:
+        lines = (
+            f"Repository: {repository.full_name}",
+            f"Observation Created: {canonical.observation.observation_id}",
+            f"Evidence Extracted: {len(canonical.evidence)}",
+            f"Finding Generated: {canonical.finding.finding_id}",
+            f"Assessment Produced: {canonical.assessment.score:.2f}",
+            f"Signals Generated: {len(canonical.signals)}",
+            f"Compiler Executed: {len(runtime.compilation.projection.nodes)} nodes",
+            f"Knowledge Graph Updated: {len(runtime.graph.nodes)} nodes",
+            f"Correlation Completed: {runtime.correlation.status.value}",
+            f"Reasoning Completed: {runtime.reasoning.status.value}",
+            f"Automation Plan Created: {runtime.automation.plan_id}",
+            f"Distribution Plan Created: {runtime.distribution.plan_id}",
+            f"Execution Successful: {runtime.execution.final_state.value}",
+        )
+        return "\n".join(lines)

@@ -227,3 +227,13 @@ GitHub is the first source plugin with an explicit canonical adapter boundary. R
 The synchronous integration path uses the existing Runtime execution engine and records collection, analysis, compilation, graph projection, correlation, reasoning, assessment, signal, automation, and distribution stages. It adds no provider, queue, scheduler, persistence implementation, or GitHub heuristic to Runtime.
 
 Canonical ownership remains in `src.core_intelligence.models` for Observation, Evidence, Finding, Assessment, and Signal. GitHub API models and all source-specific analysis/scoring logic remain inside `src.github_intelligence`.
+
+## Phase 2.4 operational vertical slice
+
+The first operational execution is synchronous and uses GitHub as the source application. Existing repository analysis, repository scoring, and GitHub signal rules produce source-specific outputs. The adapter layer converts those outputs into canonical Observation, Evidence, Finding, Assessment, and Signal objects before Runtime participation.
+
+The source-agnostic synchronous Runtime then executes compilation, in-memory graph projection, deterministic correlation, deterministic provider-free reasoning, automation planning, distribution planning, and execution lifecycle recording. The GitHub application renders the resulting console summary; Runtime does not import GitHub.
+
+Current limitations are deliberate: graph state is in-memory, reasoning uses no AI provider, distribution creates an accepted plan without contacting a destination, execution is single-process, and there is no queue, scheduler, persistence migration, retry worker, or distributed checkpoint.
+
+Future distributed execution can replace the synchronous implementations behind the existing Runtime protocols. Canonical object identifiers, execution IDs, plans, contexts, and results provide the hand-off boundary for queues, durable workers, graph providers, AI providers, and delivery providers.

@@ -3,11 +3,25 @@ from datetime import UTC, datetime
 
 from src.core_intelligence.models import Evidence
 from src.github_intelligence.contributor_analyzer import ContributorIntelligence
+from src.github_intelligence.models import Repository
 from src.github_intelligence.organization_analyzer import OrganizationIntelligence
 
 
 class GitHubEvidenceAdapter:
     """Translate source-specific contributor and organization intelligence."""
+
+    def repository(self, value: Repository, *, entity_reference: str) -> Evidence:
+        return Evidence(
+            evidence_id=f"github:repository-metadata:{value.id}",
+            entity_reference=entity_reference,
+            observation_reference=f"github:repository:{value.id}",
+            metric="repository_metadata",
+            value=asdict(value),
+            confidence=1.0,
+            source="github",
+            provenance={"adapter": "GitHubEvidenceAdapter", "repository": value.full_name},
+            timestamp=datetime.now(UTC),
+        )
 
     def contributor(self, value: ContributorIntelligence, *, entity_reference: str) -> Evidence:
         payload = asdict(value)
