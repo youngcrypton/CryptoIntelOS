@@ -6,6 +6,7 @@ from .config import GitHubConfig
 from .contributor_analyzer import ContributorAnalyzer, ContributorIntelligence
 from .dependency_analyzer import DependencyAnalyzer, DependencyIntelligence
 from .models import Commit, Contributor, Organization, Release, Repository
+from .organization_analyzer import OrganizationAnalyzer, OrganizationIntelligence
 from .release_analyzer import ReleaseAnalyzer, ReleaseIntelligence
 from .repository_scoring import (
     RepositoryScore,
@@ -34,6 +35,8 @@ __all__ = [
     "GitHubSignalEngine",
     "GitHubSignalRule",
     "Organization",
+    "OrganizationAnalyzer",
+    "OrganizationIntelligence",
     "Release",
     "ReleaseAnalyzer",
     "ReleaseIntelligence",

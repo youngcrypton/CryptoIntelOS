@@ -1,0 +1,6 @@
+from typing import Protocol
+from .automation_strategy import AutomationStrategy
+
+class AutomationRegistry(Protocol):
+    def register(self, name: str, strategy: AutomationStrategy) -> None: ...
+    def get(self, name: str) -> AutomationStrategy | None: ...
