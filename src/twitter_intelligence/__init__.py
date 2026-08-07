@@ -11,12 +11,14 @@ from .discovery import (
     DiscoveryResult,
     TwitterDiscoveryEngine,
 )
+from .analysis import AnalysisOutput, TwitterAnalysisEngine
 
 __all__ = (
     "TWITTER_INTEGRATION_METADATA",
     "DiscoveredEntity",
     "DiscoveredEntityType",
     "DiscoveryResult",
+    "AnalysisOutput",
     "TwitterCollector",
     "TwitterPost",
     "TwitterPostAdapter",
@@ -24,4 +26,5 @@ __all__ = (
     "TwitterProfileAdapter",
     "TwitterRuntimeIntegration",
     "TwitterDiscoveryEngine",
+    "TwitterAnalysisEngine",
 )
