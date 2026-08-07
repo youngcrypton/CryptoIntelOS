@@ -5,13 +5,23 @@ from .collector import TwitterCollector
 from .metadata import TWITTER_INTEGRATION_METADATA
 from .models import TwitterPost, TwitterProfile
 from .runtime import TwitterRuntimeIntegration
+from .discovery import (
+    DiscoveredEntity,
+    DiscoveredEntityType,
+    DiscoveryResult,
+    TwitterDiscoveryEngine,
+)
 
 __all__ = (
     "TWITTER_INTEGRATION_METADATA",
+    "DiscoveredEntity",
+    "DiscoveredEntityType",
+    "DiscoveryResult",
     "TwitterCollector",
     "TwitterPost",
     "TwitterPostAdapter",
     "TwitterProfile",
     "TwitterProfileAdapter",
     "TwitterRuntimeIntegration",
+    "TwitterDiscoveryEngine",
 )
