@@ -1,0 +1,6 @@
+from typing import Protocol
+from .graph_query import GraphQuery
+from .graph_result import GraphResult
+class GraphBackend(Protocol):
+    def query(self, query: GraphQuery) -> GraphResult: ...
+    def supports(self, capability: str) -> bool: ...
