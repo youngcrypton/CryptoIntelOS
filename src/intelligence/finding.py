@@ -1,3 +1,11 @@
+"""Legacy finding DTO.
+
+Deprecated: use ``src.core_intelligence.models.Finding`` at subsystem boundaries.
+This DTO remains for backwards compatibility with the legacy rule engine.
+"""
+
+__deprecated__ = True
+
 from dataclasses import dataclass
 
 

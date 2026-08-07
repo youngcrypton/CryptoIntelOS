@@ -1,3 +1,7 @@
+"""Legacy signal DTO; use ``src.core_intelligence.models.Signal`` canonically."""
+
+__deprecated__ = True
+
 from dataclasses import dataclass
 
 

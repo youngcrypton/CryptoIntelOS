@@ -19,6 +19,7 @@ from .signal_engine import (
     GitHubSignalRule,
     SignalRuleMatch,
 )
+from .vertical_slice import GitHubVerticalSlice, GitHubVerticalSliceResult
 
 __all__ = [
     "Commit",
@@ -34,6 +35,8 @@ __all__ = [
     "GitHubIntelligenceSignal",
     "GitHubSignalEngine",
     "GitHubSignalRule",
+    "GitHubVerticalSlice",
+    "GitHubVerticalSliceResult",
     "Organization",
     "OrganizationAnalyzer",
     "OrganizationIntelligence",

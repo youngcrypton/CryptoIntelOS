@@ -4,6 +4,7 @@ from .finding_adapter import RepositoryFindingAdapter
 from .observation_adapter import RepositoryObservationAdapter
 from .runtime_integration import GitHubRuntimeIntegration, GitHubRuntimeResult
 from .signal_adapter import GitHubSignalAdapter
+from .version import __version__
 
 __all__ = [
     "GitHubEvidenceAdapter",
@@ -13,4 +14,5 @@ __all__ = [
     "RepositoryAssessmentAdapter",
     "RepositoryFindingAdapter",
     "RepositoryObservationAdapter",
+    "__version__",
 ]

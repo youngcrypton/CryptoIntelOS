@@ -1,3 +1,10 @@
+"""Legacy persistence/application signal DTO.
+
+Deprecated: adapt to ``src.core_intelligence.models.Signal`` before Runtime use.
+"""
+
+__deprecated__ = True
+
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional

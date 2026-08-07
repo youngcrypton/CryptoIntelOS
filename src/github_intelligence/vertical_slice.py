@@ -8,6 +8,7 @@ from src.runtime.synchronous import SynchronousRuntime, SynchronousRuntimeResult
 from .adapters import GitHubRuntimeIntegration, GitHubRuntimeResult
 from .analysis.repository_analyzer import RepositoryAnalyzer
 from .models import Repository
+from .organization_analyzer import OrganizationIntelligence
 from .repository_scoring import RepositoryScoringEngine
 from .signal_engine import GitHubSignalEngine
 
@@ -22,24 +23,39 @@ class GitHubVerticalSliceResult:
 class GitHubVerticalSlice:
     """Run one GitHub repository through the complete synchronous platform."""
 
-    def __init__(self) -> None:
-        self.repository_analyzer = RepositoryAnalyzer()
-        self.scoring_engine = RepositoryScoringEngine()
-        self.signal_engine = GitHubSignalEngine()
-        self.adapters = GitHubRuntimeIntegration()
-        self.runtime = SynchronousRuntime()
+    def __init__(
+        self,
+        *,
+        repository_analyzer: RepositoryAnalyzer | None = None,
+        scoring_engine: RepositoryScoringEngine | None = None,
+        signal_engine: GitHubSignalEngine | None = None,
+        adapters: GitHubRuntimeIntegration | None = None,
+        runtime: SynchronousRuntime | None = None,
+    ) -> None:
+        self.repository_analyzer = repository_analyzer or RepositoryAnalyzer()
+        self.scoring_engine = scoring_engine or RepositoryScoringEngine()
+        self.signal_engine = signal_engine or GitHubSignalEngine()
+        self.adapters = adapters or GitHubRuntimeIntegration()
+        self.runtime = runtime or SynchronousRuntime()
 
     def run(
         self,
         repository: Repository,
         metadata: Mapping[str, Any] | None = None,
         *,
+        organization: OrganizationIntelligence | None = None,
         output: TextIO | None = None,
     ) -> GitHubVerticalSliceResult:
         analysis = self.repository_analyzer.analyze(repository, metadata)
         score = self.scoring_engine.score(analysis)
         github_signals = tuple(self.signal_engine.generate(analysis, score))
-        canonical = self.adapters.process(repository, analysis, score, github_signals)
+        canonical = self.adapters.process(
+            repository,
+            analysis,
+            score,
+            github_signals,
+            organization,
+        )
         objects = (
             canonical.observation,
             *canonical.evidence,
