@@ -13,6 +13,7 @@ from .discovery import (
 )
 from .analysis import AnalysisOutput, TwitterAnalysisEngine
 from .signals import SignalOutput, TwitterSignalEngine
+from .vertical_slice import TwitterVerticalSlice, TwitterVerticalSliceResult
 
 __all__ = (
     "TWITTER_INTEGRATION_METADATA",
@@ -30,4 +31,6 @@ __all__ = (
     "TwitterDiscoveryEngine",
     "TwitterAnalysisEngine",
     "TwitterSignalEngine",
+    "TwitterVerticalSlice",
+    "TwitterVerticalSliceResult",
 )
