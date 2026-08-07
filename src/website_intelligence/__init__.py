@@ -11,9 +11,11 @@ from .discovery import (
     DiscoveryResult,
     WebsiteDiscoveryEngine,
 )
+from .analysis import AnalysisOutput, WebsiteAnalysisEngine
 
 __all__ = (
     "Document",
+    "AnalysisOutput",
     "DocumentAdapter",
     "DiscoveredEntity",
     "DiscoveredEntityType",
@@ -25,6 +27,7 @@ __all__ = (
     "WEBSITE_INTEGRATION_METADATA",
     "Website",
     "WebsiteAdapter",
+    "WebsiteAnalysisEngine",
     "WebsiteCollector",
     "WebsiteDiscoveryEngine",
     "WebsiteRuntimeIntegration",
