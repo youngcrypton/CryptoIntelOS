@@ -1,0 +1,3 @@
+# Provider Development Guide
+
+Implement every integration as Connector → Provider → Adapter. Inject transport and secrets; never hardcode credentials or construct canonical Kernel models in connectors/providers. Declare metadata and capabilities, preserve provenance, map failures to the shared error taxonomy, and expose health/metrics/tracing through the Provider Ecosystem management contracts. Use deterministic mock transports and recorded fixtures for tests; live tests must remain optional. Submit adapter output through `ProviderRuntimeProjection` and Platform SDK rather than calling Runtime directly.
