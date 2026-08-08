@@ -32,7 +32,7 @@ Docker starts the application with `python -m src`. The module entry is implemen
 
 ## Testing strategy
 
-Pytest discovers both conventional `test_*.py` files and the repository's established `*_test.py` files. Tests beneath `tests/` are not intentionally excluded. Focused repository-health tests cover discovery configuration, package imports, validator architecture checks, and the Docker module entry point.
+Pytest discovers both conventional `test_*.py` files and the repository's established `*_test.py` files. Four root-level legacy files are retained as manual executable compatibility scripts and are intentionally excluded in `tests/conftest.py` because they perform work or live network access at import time: `test_github_search.py`, `test_multi_query_search.py`, `test_pipeline.py`, and `test_query_loader.py`. Focused repository-health tests cover discovery configuration, package imports, validator architecture checks, and the Docker module entry point.
 
 ## Contribution workflow and quality gates
 

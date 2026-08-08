@@ -63,11 +63,10 @@ def project_finding_group(
     if identity is None:
         raise ValueError("an empty legacy finding group cannot be projected")
     observation, _, _, _, _ = project_identity_bundle(identity, context)
-    findings: tuple[Finding, ...] = tuple(
-        reference.finding
-        for project_finding in group.findings
-        for reference in project_finding.supporting_findings
-    )
+    findings = tuple(sorted(
+        (reference.finding for project_finding in group.findings for reference in project_finding.supporting_findings),
+        key=lambda finding: finding.finding_id,
+    ))
     return observation, (), findings, (), ()
 
 

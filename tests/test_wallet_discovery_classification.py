@@ -2,6 +2,7 @@ from datetime import UTC, datetime
 
 from src.blockchain_platform.adapters import AdapterResult
 from src.core_intelligence.onchain import Address, ChainReference, Wallet
+from src.core_intelligence.models import Observation
 from src.platform_sdk import RuntimeFacade
 from src.runtime.engine import ExecutionContext, ExecutionState, ExecutionResult
 from src.wallet_intelligence import LabelType, WalletClassificationEngine, WalletDiscovery, WalletRuntimeIntegration
@@ -45,7 +46,7 @@ def test_runtime_delegation_forwards_canonical_output() -> None:
         received.append((output, supplied_context))
         return ExecutionResult(supplied_context.execution_id, ExecutionState.COMPLETED)
 
-    output = ("wallet-profile", (), (), (), ())
+    output = (Observation("wallet-observation", "wallet", "wallet-1", "1", timestamp, timestamp, "test", "checksum", {}), (), (), (), ())
     result = WalletRuntimeIntegration(RuntimeFacade(entrypoint)).integrate(output, context)
     assert result.final_state is ExecutionState.COMPLETED
     assert received == [(output, context)]

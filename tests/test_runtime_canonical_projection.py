@@ -39,7 +39,7 @@ def test_facade_rejects_non_canonical_objects(unsupported: object) -> None:
 
 
 def test_facade_rejects_legacy_execution_context() -> None:
-    legacy = LegacyPipelineExecutionContext("execution-1", "source", NOW)
+    legacy = LegacyPipelineExecutionContext("execution-1", __import__("src.core_intelligence.interfaces.pipeline", fromlist=["PipelineStage"]).PipelineStage.COLLECTOR, "source", NOW)
     with pytest.raises(UnsupportedRuntimeTypeError):
         RuntimeFacade(lambda output, supplied: None).integrate(  # type: ignore[arg-type,return-value]
             (observation(), (), (), (), ()), legacy  # type: ignore[arg-type]

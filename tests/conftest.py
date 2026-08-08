@@ -32,3 +32,21 @@ def sample_website():
         "status": 200,
         "content": "<html><body>Hello</body></html>",
     }
+from pathlib import Path
+
+
+def pytest_ignore_collect(collection_path: Path, config) -> bool:
+    """Exclude the legacy executable pipeline smoke script from collection.
+
+    It intentionally performs work at import time and is retained as a manual
+    compatibility script. The actual pipeline behavior is covered by focused
+    tests elsewhere in the suite.
+    """
+
+    legacy_manual_scripts = {
+        "test_github_search.py",
+        "test_multi_query_search.py",
+        "test_pipeline.py",
+        "test_query_loader.py",
+    }
+    return collection_path.name in legacy_manual_scripts and collection_path.parent.name == "tests"
