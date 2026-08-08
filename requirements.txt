@@ -49,4 +49,4 @@ isort>=6.0.0
 flake8>=7.3.0
 
 # Type Checking
-mypy>=1.17.0
+mypy>=2.3.0
