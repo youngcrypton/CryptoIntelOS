@@ -5,6 +5,9 @@
 # Core HTTP
 requests>=2.32.0
 
+# GitHub API client used by legacy collectors and search services
+PyGithub>=2.8.0
+
 # HTML Parsing
 beautifulsoup4>=4.13.0
 lxml>=6.0.0
