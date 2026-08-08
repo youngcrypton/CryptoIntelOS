@@ -55,4 +55,6 @@ class FindingFusionEngine:
 
     @staticmethod
     def enter_runtime(group: ProjectFindingGroup, facade: RuntimeFacade, context: ExecutionContext) -> ExecutionResult:
-        return facade.integrate(group, context)  # type: ignore[arg-type]
+        from src.unified_intelligence.runtime_projection import project_finding_group
+
+        return facade.integrate(project_finding_group(group, context), context)

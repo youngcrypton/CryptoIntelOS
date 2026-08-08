@@ -5,7 +5,15 @@ from .collector import SourceCollector
 from .lifecycle import CANONICAL_LIFECYCLE, LifecycleStage
 from .metadata import IntegrationMetadata
 from .pipeline import IntegrationPipeline
-from .runtime import RuntimeFacade
+from .runtime import (
+    CanonicalOutput,
+    RuntimeFacade,
+    UnsupportedRuntimeTypeError,
+    execute_synchronously,
+    flatten_canonical_output,
+    validate_canonical_output,
+    validate_execution_context,
+)
 from .translator import (
     AssessmentTranslator,
     EvidenceTranslator,
@@ -35,6 +43,12 @@ __all__ = (
     "ObservationTranslator",
     "ObservationValidator",
     "RuntimeFacade",
+    "CanonicalOutput",
+    "UnsupportedRuntimeTypeError",
+    "execute_synchronously",
+    "flatten_canonical_output",
+    "validate_canonical_output",
+    "validate_execution_context",
     "SignalValidator",
     "SourceAdapter",
     "SourceCollector",

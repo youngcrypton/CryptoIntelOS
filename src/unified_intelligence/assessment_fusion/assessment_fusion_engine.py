@@ -67,4 +67,6 @@ class AssessmentFusionEngine:
 
     @staticmethod
     def enter_runtime(group: ProjectAssessmentGroup, facade: RuntimeFacade, context: ExecutionContext) -> ExecutionResult:
-        return facade.integrate(group, context)  # type: ignore[arg-type]
+        from src.unified_intelligence.runtime_projection import project_assessment_group
+
+        return facade.integrate(project_assessment_group(group, context), context)

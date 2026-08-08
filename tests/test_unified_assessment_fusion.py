@@ -53,4 +53,6 @@ def test_strategy_registry_and_runtime_delegation():
         return ExecutionResult(supplied.execution_id, ExecutionState.COMPLETED)
     result = AssessmentFusionEngine.enter_runtime(group, RuntimeFacade(entrypoint), context)
     assert result.final_state is ExecutionState.COMPLETED
-    assert calls == [(group, context)]
+    projection = calls[0][0]
+    assert projection[3] == assessments
+    assert calls[0][1] is context

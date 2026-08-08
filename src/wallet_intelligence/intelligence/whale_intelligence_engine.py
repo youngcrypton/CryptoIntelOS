@@ -6,7 +6,7 @@ from typing import TextIO
 
 from src.blockchain_platform.adapters import AdapterContext, BlockchainAdapter, BlockchainProvider
 from src.core_intelligence.models import Assessment, Evidence, Finding, Observation, Signal
-from src.platform_sdk import RuntimeFacade
+from src.platform_sdk import RuntimeFacade, execute_synchronously
 from src.runtime.engine import ExecutionContext, ExecutionResult
 from src.runtime.synchronous import SynchronousRuntime, SynchronousRuntimeResult
 from src.wallet_intelligence import WalletClassificationEngine, WalletDiscovery, WalletRuntimeIntegration
@@ -98,8 +98,7 @@ class WalletIntelligenceVerticalSlice:
         captured = []
 
         def execute(canonical, execution_context):
-            objects = (canonical[0], *canonical[1], *canonical[2], *canonical[3], *canonical[4])
-            result = self.runtime.execute(execution_context.execution_id, objects)
+            result = execute_synchronously(self.runtime, canonical, execution_context)
             captured.append(result)
             return result.execution
 

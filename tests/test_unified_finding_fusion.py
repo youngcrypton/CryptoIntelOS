@@ -49,4 +49,6 @@ def test_strategy_registry_and_runtime_delegation():
         return ExecutionResult(supplied.execution_id, ExecutionState.COMPLETED)
     result = FindingFusionEngine.enter_runtime(group, RuntimeFacade(entrypoint), context)
     assert result.final_state is ExecutionState.COMPLETED
-    assert calls == [(group, context)]
+    projection = calls[0][0]
+    assert projection[2] == findings
+    assert calls[0][1] is context

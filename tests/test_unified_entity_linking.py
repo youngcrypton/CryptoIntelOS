@@ -50,4 +50,7 @@ def test_strategy_registry_and_runtime_delegation():
         return ExecutionResult(supplied.execution_id, ExecutionState.COMPLETED)
     result = UnifiedRuntimeIntegration(RuntimeFacade(entrypoint)).integrate(bundle, context)
     assert result.final_state is ExecutionState.COMPLETED
-    assert received == [(bundle, context)]
+    projection = received[0][0]
+    assert projection[0].source_identifier == bundle.canonical_project_identifier
+    assert projection[0].raw_payload["traceability"] == bundle.traceability
+    assert received[0][1] is context

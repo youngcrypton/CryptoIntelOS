@@ -151,9 +151,19 @@ class PlanningDistributionStrategy:
 
 
 class SynchronousRuntime:
-    """Source-agnostic synchronous orchestration for canonical Runtime objects."""
+    """Internal orchestration for canonical objects supplied by the Platform SDK."""
 
     def execute(self, execution_id: str, objects: tuple[CanonicalObject, ...]) -> SynchronousRuntimeResult:
+        unsupported = tuple(
+            type(item).__name__
+            for item in objects
+            if not isinstance(item, (Observation, Evidence, Finding, Assessment, Signal))
+        )
+        if unsupported:
+            raise TypeError(
+                "Runtime accepts canonical objects only; unsupported types: "
+                + ", ".join(unsupported)
+            )
         timestamp = datetime.now(UTC)
         compiler = CanonicalCompiler()
         compilation = compiler.compile(objects, CompilerContext(execution_id, "canonical", timestamp))

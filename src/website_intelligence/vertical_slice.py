@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import TextIO
 
 from src.core_intelligence.models import Observation
-from src.platform_sdk import RuntimeFacade
+from src.platform_sdk import RuntimeFacade, execute_synchronously
 from src.platform_sdk.runtime import CanonicalOutput
 from src.runtime.engine import ExecutionContext, ExecutionResult, ExecutionState
 from src.runtime.synchronous import SynchronousRuntime, SynchronousRuntimeResult
@@ -100,14 +100,7 @@ class WebsiteVerticalSlice:
         captured: list[SynchronousRuntimeResult] = []
 
         def execute(canonical_output: CanonicalOutput, context: ExecutionContext) -> ExecutionResult:
-            objects = (
-                canonical_output[0],
-                *canonical_output[1],
-                *canonical_output[2],
-                *canonical_output[3],
-                *canonical_output[4],
-            )
-            result = self.runtime.execute(context.execution_id, objects)
+            result = execute_synchronously(self.runtime, canonical_output, context)
             captured.append(result)
             return result.execution
 

@@ -4,6 +4,8 @@ from datetime import UTC, datetime
 from typing import TextIO
 
 from src.core_intelligence.models import Observation, Signal
+from src.platform_sdk import execute_synchronously
+from src.runtime.engine import ExecutionContext
 from src.runtime.synchronous import SynchronousRuntime
 from src.unified_intelligence.assessment_fusion import AssessmentFusionContext, AssessmentFusionEngine
 from src.unified_intelligence.entity_linking import EntityLinker, LinkingContext
@@ -73,8 +75,12 @@ class UnifiedIntelligenceVerticalSlice:
         context = ProfileContext(execution_id, "0.6.0", now.isoformat(), (("source_count", str(len(sources))),))
         profile = self.profiles.build(identity, evidence, findings, assessments, signals, metadata, context).profile
         observation = Observation(f"profile:{identity.canonical_project_identifier}", "unified_intelligence", identity.canonical_project_identifier, "unified-profile", now, now, "0.6.0", hashlib.sha256(repr(profile).encode()).hexdigest(), {"sources": metadata.sources, "confidence": profile.confidence})
-        objects = (observation, *evidence_items, *finding_items, *assessment_items, *signals)
-        runtime = self.runtime.execute(execution_id, objects)
+        projection = (observation, evidence_items, finding_items, assessment_items, signals)
+        runtime = execute_synchronously(
+            self.runtime,
+            projection,
+            ExecutionContext(execution_id, "1.0", now, context.metadata),
+        )
         summary = self._summary(profile, runtime)
         print(summary, file=output or sys.stdout)
         return UnifiedIntelligenceExecutionResult(profile, runtime, summary)
