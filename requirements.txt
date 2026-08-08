@@ -9,7 +9,7 @@ requests>=2.32.0
 PyGithub>=2.8.0
 
 # HTML Parsing
-beautifulsoup4>=4.13.0
+beautifulsoup4>=4.15.0
 lxml>=6.0.0
 
 # Browser Automation
