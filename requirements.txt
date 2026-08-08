@@ -10,7 +10,7 @@ PyGithub>=2.8.0
 
 # HTML Parsing
 beautifulsoup4>=4.13.0
-lxml>=6.0.0
+lxml>=6.1.1
 
 # Browser Automation
 playwright>=1.55.0
