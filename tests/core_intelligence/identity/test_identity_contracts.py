@@ -12,9 +12,9 @@ from src.core_intelligence.identity import (
     IdentifierType,
     Identity,
     IdentityContext,
-    Relationship,
     RelationshipType,
 )
+from src.core_intelligence.relationships import Relationship, RelationshipCategory, RelationshipDirection
 
 
 def test_constructs_entity_with_canonical_identity() -> None:
@@ -74,12 +74,14 @@ def test_relationship_preserves_typed_endpoints() -> None:
     organization = Entity(entity_type=EntityType.ORGANIZATION)
     project = Entity(entity_type=EntityType.PROJECT)
     relationship = Relationship(
-        subject=organization,
-        object=project.entity_id,
+        source_entity=organization,
+        target_entity=project.entity_id,
         relationship_type=RelationshipType.FOUNDED,
+        category=RelationshipCategory.ORGANIZATIONAL,
+        direction=RelationshipDirection.DIRECTED,
     )
 
-    assert relationship.subject is organization
-    assert relationship.object == project.entity_id
-    assert relationship.subject != relationship.object
-    assert get_type_hints(Relationship)["subject"] == Entity | UUID
+    assert relationship.source_entity is organization
+    assert relationship.target_entity == project.entity_id
+    assert relationship.source_entity != relationship.target_entity
+    assert get_type_hints(Relationship)["source_entity"] == Entity | UUID

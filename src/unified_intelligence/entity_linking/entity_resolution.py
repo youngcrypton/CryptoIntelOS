@@ -32,7 +32,7 @@ class DeterministicEntityResolution:
         identifiers = tuple(identifier for candidate in linked for identifier in candidate.identifiers)
         deduped = tuple(dict((identifier.identifier_type.value + ":" + identifier.value, identifier) for identifier in identifiers).values())
         project_id = f"project:{base.canonical_name.casefold().replace(' ', '-') or base.entity.entity_id}"
-        entity = Entity(entity_id=uuid5(NAMESPACE_URL, project_id), entity_type=EntityType.PROJECT, identity=Identity(base.canonical_name, deduped))
+        entity = Entity(entity_id=uuid5(NAMESPACE_URL, project_id), entity_type=EntityType.PROJECT, identity=Identity(canonical_name=base.canonical_name, identifiers=deduped))
         all_identifiers = tuple(item for candidate in linked for item in candidate.identifiers)
         bundle = IdentityBundle(project_id, entity, self._identifiers(all_identifiers, (IdentifierType.GITHUB_REPOSITORY_ID,)), self._identifiers(all_identifiers, (IdentifierType.TWITTER_USERNAME,)), self._identifiers(all_identifiers, (IdentifierType.URL, IdentifierType.WEBSITE_DOMAIN)), self._identifiers(all_identifiers, (IdentifierType.WALLET_ADDRESS, IdentifierType.ENS_NAME)), tuple(item for match in matches for item in match.matched_identifiers), LinkingConfidence(1.0 if matches else .5, "exact deterministic links" if matches else "single canonical candidate"), tuple((candidate.source, candidate.entity.entity_id.hex) for candidate in linked))
         return LinkingResult(bundle, tuple(matches))

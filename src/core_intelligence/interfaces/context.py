@@ -1,4 +1,9 @@
-"""Execution tracing contracts for the canonical pipeline."""
+"""Deprecated pipeline-stage context.
+
+Use ``src.runtime.engine.ExecutionContext`` for canonical execution lifecycle data.
+"""
+
+__deprecated__ = True
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -9,7 +14,7 @@ from .pipeline import PipelineStage
 
 
 @dataclass(frozen=True, slots=True)
-class ExecutionContext:
+class LegacyPipelineExecutionContext:
     """Immutable context propagated through one intelligence execution."""
 
     execution_id: str
@@ -17,3 +22,6 @@ class ExecutionContext:
     source: str
     started_at: datetime
     metadata: Mapping[str, JsonValue] = field(default_factory=dict)
+
+
+ExecutionContext = LegacyPipelineExecutionContext

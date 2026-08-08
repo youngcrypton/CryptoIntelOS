@@ -10,7 +10,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Finding:
+class LegacyFinding:
     """
     Represents one intelligence finding produced by a rule.
     """
@@ -26,3 +26,6 @@ class Finding:
     evidence: str = ""
 
     source: str = ""
+
+
+Finding = LegacyFinding

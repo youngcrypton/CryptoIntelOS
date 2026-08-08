@@ -14,7 +14,7 @@ NOW = datetime(2026, 8, 8, tzinfo=UTC)
 
 def inputs():
     identifier = Identifier("example.org", IdentifierType.WEBSITE_DOMAIN)
-    candidate = EntityCandidate("website", Entity(entity_type=EntityType.PROJECT, identity=Identity("Example", (identifier,))), "Example", (identifier,))
+    candidate = EntityCandidate("website", Entity(entity_type=EntityType.PROJECT, identity=Identity(canonical_name="Example", identifiers=(identifier,))), "Example", (identifier,))
     identity = EntityLinker().link((candidate,), LinkingContext("execution-1")).bundle
     evidence = (Evidence("web-1", "project:example", "obs-1", "documentation", True, .9, "website", {"url": "example.org/docs"}, NOW), Evidence("gh-1", "project:example", "obs-2", "activity", 10, .8, "github", {"repository": "repo-1"}, NOW))
     bundle = EvidenceFusionEngine().fuse(identity, evidence, FusionContext("execution-1", identity.canonical_project_identifier)).bundle

@@ -9,7 +9,7 @@ from src.unified_intelligence.evidence_fusion import DeterministicEvidenceFusion
 
 
 def identity():
-    candidate = EntityCandidate("website", Entity(entity_type=EntityType.PROJECT, identity=Identity("Example", (Identifier("example.org", IdentifierType.WEBSITE_DOMAIN),))), "Example", (Identifier("example.org", IdentifierType.WEBSITE_DOMAIN),))
+    candidate = EntityCandidate("website", Entity(entity_type=EntityType.PROJECT, identity=Identity(canonical_name="Example", identifiers=(Identifier("example.org", IdentifierType.WEBSITE_DOMAIN),))), "Example", (Identifier("example.org", IdentifierType.WEBSITE_DOMAIN),))
     return EntityLinker().link((candidate,), LinkingContext("execution-1")).bundle
 
 

@@ -1,4 +1,9 @@
-"""Generic intelligence signal and profile models."""
+"""Deprecated pre-Kernel intelligence models.
+
+Use ``src.core_intelligence.models.Signal`` and the Unified project profile.
+"""
+
+__deprecated__ = True
 
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -10,7 +15,7 @@ from .priority import priority_for_severity
 
 
 @dataclass(frozen=True)
-class IntelligenceSignal:
+class LegacyIntelligenceSignal:
     """Source-agnostic signal composed of confidence and traceable evidence."""
 
     name: str
@@ -29,7 +34,7 @@ class IntelligenceSignal:
 
 
 @dataclass(frozen=True)
-class IntelligenceProfile:
+class LegacyIntelligenceProfile:
     """Collection of signals and metadata for any monitored subject."""
 
     subject: str
@@ -39,3 +44,7 @@ class IntelligenceProfile:
         default_factory=lambda: datetime.now(timezone.utc)
     )
     metadata: dict[str, object] = field(default_factory=dict)
+
+
+IntelligenceSignal = LegacyIntelligenceSignal
+IntelligenceProfile = LegacyIntelligenceProfile

@@ -14,7 +14,7 @@ NOW = datetime(2026, 8, 8, tzinfo=UTC)
 
 def source(name, extra_identifier, evidence_id, finding_id, assessment_id, signal_id):
     domain = Identifier("example.org", IdentifierType.WEBSITE_DOMAIN)
-    candidate = EntityCandidate(name, Entity(entity_type=EntityType.PROJECT, identity=Identity("Example", (domain, extra_identifier))), "Example", (domain, extra_identifier))
+    candidate = EntityCandidate(name, Entity(entity_type=EntityType.PROJECT, identity=Identity(canonical_name="Example", identifiers=(domain, extra_identifier))), "Example", (domain, extra_identifier))
     evidence = Evidence(evidence_id, "project:example", f"{name}:observation", f"{name}.activity", True, .9, name, {"source": name}, NOW)
     finding = Finding(finding_id, "project:example", f"{name.title()} Activity", .9, (evidence_id,), f"{name} activity confirmed", NOW)
     assessment = Assessment(assessment_id, "project:example", "Adoption Momentum", 90, .9, (evidence_id,), f"{name}-policy", "1.0", NOW)

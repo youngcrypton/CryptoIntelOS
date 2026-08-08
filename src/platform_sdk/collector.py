@@ -1,8 +1,8 @@
 from collections.abc import Sequence
 from typing import Protocol
 
-from src.core_intelligence.interfaces.context import ExecutionContext
 from src.core_intelligence.models import Observation
+from src.runtime.engine import ExecutionContext
 
 from .metadata import IntegrationMetadata
 

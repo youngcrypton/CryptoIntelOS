@@ -3,32 +3,25 @@ from datetime import datetime, timezone
 
 import pytest
 
-from src.core_intelligence import Assessment, Entity, Evidence, Finding, Observation, Signal
+from src.core_intelligence import Assessment, Entity, EntityType, Evidence, Finding, Identity, Observation, Signal
 
 
 NOW = datetime(2026, 8, 7, 12, 0, tzinfo=timezone.utc)
 
 
 def test_constructs_and_compares_entities_by_value() -> None:
-    values = {
-        "entity_id": "entity-1",
-        "entity_type": "project",
-        "canonical_name": "Example",
-        "aliases": ("Example Protocol",),
-        "external_identifiers": {"registry": "example"},
-        "metadata": {"sector": "infrastructure"},
-        "created_at": NOW,
-        "updated_at": NOW,
-    }
+    from uuid import UUID
+
+    values = {"entity_id": UUID(int=1), "entity_type": EntityType.PROJECT, "identity": Identity(canonical_name="Example")}
 
     assert Entity(**values) == Entity(**values)
 
 
 def test_models_are_frozen() -> None:
-    entity = Entity("entity-1", "project", "Example")
+    entity = Entity(entity_type=EntityType.PROJECT, identity=Identity(canonical_name="Example"))
 
     with pytest.raises(FrozenInstanceError):
-        entity.canonical_name = "Changed"  # type: ignore[misc]
+        entity.identity = Identity(canonical_name="Changed")  # type: ignore[misc]
 
 
 def test_observation_serializes_raw_payload_and_timestamps() -> None:

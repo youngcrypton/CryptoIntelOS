@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Signal:
+class LegacySignal:
     """
     Represents one intelligence signal generated
     anywhere inside CryptoIntel OS.
@@ -31,3 +31,6 @@ class Signal:
     summary: str
 
     evidence: str
+
+
+Signal = LegacySignal

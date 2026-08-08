@@ -1,3 +1,10 @@
+"""Deprecated mutable project profile.
+
+Use ``src.unified_intelligence.profile.ProjectIntelligenceProfile``.
+"""
+
+__deprecated__ = True
+
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import List
@@ -6,7 +13,7 @@ from src.models.intelligence_signal import IntelligenceSignal
 
 
 @dataclass
-class ProjectIntelligenceProfile:
+class LegacyProjectIntelligenceProfile:
     """
     Living intelligence profile for a discovered project.
     """
@@ -43,3 +50,6 @@ class ProjectIntelligenceProfile:
     def signal_count(self):
 
         return len(self.signals)
+
+
+ProjectIntelligenceProfile = LegacyProjectIntelligenceProfile

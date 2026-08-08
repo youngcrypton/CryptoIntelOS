@@ -1,8 +1,12 @@
+"""Legacy persistence DTO; canonical projects use Identity ``EntityType.PROJECT``."""
+
+__deprecated__ = True
+
 from dataclasses import dataclass
 
 
 @dataclass
-class Project:
+class LegacyProject:
     """Represents a monitored crypto project."""
 
     id: int
@@ -11,3 +15,6 @@ class Project:
     blockchain: str
     category: str
     status: str
+
+
+Project = LegacyProject

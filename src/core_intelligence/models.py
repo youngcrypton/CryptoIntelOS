@@ -31,8 +31,11 @@ def _serialize(value: Any) -> Any:
 
 
 @dataclass(frozen=True, slots=True)
-class Entity(SerializableModel):
-    """A canonical real-world object to which intelligence may be attached."""
+class LegacyEntity(SerializableModel):
+    """Deprecated flat entity DTO retained for compatibility.
+
+    Use ``src.core_intelligence.identity.Entity`` for canonical identity.
+    """
 
     entity_id: str
     entity_type: str
@@ -44,6 +47,9 @@ class Entity(SerializableModel):
     metadata: Mapping[str, JsonValue] = field(default_factory=dict)
     created_at: datetime = field(default_factory=datetime.utcnow)
     updated_at: datetime = field(default_factory=datetime.utcnow)
+
+
+Entity = LegacyEntity
 
 
 @dataclass(frozen=True, slots=True)

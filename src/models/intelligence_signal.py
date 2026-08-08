@@ -11,7 +11,7 @@ from typing import Optional
 
 
 @dataclass
-class IntelligenceSignal:
+class LegacyIntelligenceSignal:
     """
     Represents a single intelligence signal discovered by a collector.
     """
@@ -26,3 +26,6 @@ class IntelligenceSignal:
     url: str
     confidence: float
     timestamp: datetime
+
+
+IntelligenceSignal = LegacyIntelligenceSignal

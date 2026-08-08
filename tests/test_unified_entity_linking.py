@@ -9,7 +9,7 @@ from src.unified_intelligence import (
 
 
 def candidate(source, name, identifiers):
-    entity = Entity(entity_type=EntityType.PROJECT, identity=Identity(name, tuple(identifiers)))
+    entity = Entity(entity_type=EntityType.PROJECT, identity=Identity(canonical_name=name, identifiers=tuple(identifiers)))
     return EntityCandidate(source, entity, name, tuple(identifiers), (f"{source}:official",))
 
 
