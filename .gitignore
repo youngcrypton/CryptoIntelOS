@@ -81,7 +81,6 @@ htmlcov/
 # VS Code
 # ----------------------------------------------------------
 
-.vscode/
 
 # ----------------------------------------------------------
 # Build
@@ -138,3 +137,6 @@ credentials/
 
 playwright/.cache/
 .chromium/
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat

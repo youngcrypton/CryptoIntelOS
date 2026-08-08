@@ -19,7 +19,7 @@ class GitHubSearchService:
 
     def __init__(self):
 
-        self.client = Github(config.github_token)
+        self.client = Github(config.github_token) if config.github_token else Github()
 
     def search_repositories(self, query: str, limit: int = 10):
 
