@@ -43,7 +43,7 @@ pytest>=8.4.0
 black>=25.1.0
 
 # Import Sorting
-isort>=6.0.0
+isort>=8.0.1
 
 # Linting
 flake8>=7.3.0
