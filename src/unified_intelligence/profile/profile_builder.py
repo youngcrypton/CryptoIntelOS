@@ -79,7 +79,7 @@ class UnifiedIntelligenceVerticalSlice:
         runtime = execute_synchronously(
             self.runtime,
             projection,
-            ExecutionContext(execution_id, "1.0", now, context.metadata),
+            ExecutionContext(execution_id, "1.0", now, context.execution_metadata),
         )
         summary = self._summary(profile, runtime)
         print(summary, file=output or sys.stdout)
