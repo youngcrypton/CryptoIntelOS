@@ -16,7 +16,7 @@ lxml>=6.0.0
 playwright>=1.55.0
 
 # Environment Variables
-python-dotenv>=1.1.0
+python-dotenv>=1.2.2
 
 # Terminal UI
 rich>=14.0.0
