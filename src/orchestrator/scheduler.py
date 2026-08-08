@@ -1,3 +1,6 @@
+import warnings
+
+
 class Scheduler:
     """
     Placeholder scheduler.
@@ -10,6 +13,12 @@ class Scheduler:
     """
 
     def run(self):
+
+        warnings.warn(
+            "src.orchestrator.scheduler is obsolete; scheduling must invoke Platform SDK",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         print(
             "[Scheduler] Ready."

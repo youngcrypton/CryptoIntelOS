@@ -20,6 +20,7 @@ The engine owns orchestration.
 from __future__ import annotations
 
 import time
+import warnings
 from typing import Any, Dict, Iterable
 
 from src.intelligence.analyzers.base_analyzer import BaseAnalyzer
@@ -27,6 +28,7 @@ from src.intelligence.models.living_intelligence_profile import (
     LivingIntelligenceProfile,
 )
 from src.intelligence.models.analyzer_result import AnalyzerResult
+from src.platform_sdk import LegacyExecutionAdapter
 
 
 class IntelligencePipeline:
@@ -37,9 +39,16 @@ class IntelligencePipeline:
     def __init__(
         self,
         analyzers: Iterable[BaseAnalyzer],
+        runtime_adapter: LegacyExecutionAdapter | None = None,
     ) -> None:
 
         self.analyzers = list(analyzers)
+        self.runtime_adapter = runtime_adapter or LegacyExecutionAdapter()
+        warnings.warn(
+            "legacy analyzer orchestration is deprecated; migrate to Runtime",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
     def execute(
         self,
@@ -94,4 +103,9 @@ class IntelligencePipeline:
 
             profile.merge(result)
 
+        self.runtime_adapter.execute_value(
+            profile,
+            source="legacy-analyzer-pipeline",
+            execution_id=f"legacy:analyzers:{repository.get('full_name', 'repository')}",
+        )
         return profile

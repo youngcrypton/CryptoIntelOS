@@ -2,10 +2,7 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import Any, TextIO
 import sys
-from datetime import UTC, datetime
 
-from src.platform_sdk import execute_synchronously
-from src.runtime.engine import ExecutionContext
 from src.runtime.synchronous import SynchronousRuntime, SynchronousRuntimeResult
 
 from .adapters import GitHubRuntimeIntegration, GitHubRuntimeResult
@@ -38,8 +35,8 @@ class GitHubVerticalSlice:
         self.repository_analyzer = repository_analyzer or RepositoryAnalyzer()
         self.scoring_engine = scoring_engine or RepositoryScoringEngine()
         self.signal_engine = signal_engine or GitHubSignalEngine()
-        self.adapters = adapters or GitHubRuntimeIntegration()
         self.runtime = runtime or SynchronousRuntime()
+        self.adapters = adapters or GitHubRuntimeIntegration(self.runtime)
 
     def run(
         self,
@@ -59,17 +56,7 @@ class GitHubVerticalSlice:
             github_signals,
             organization,
         )
-        output_projection = (
-            canonical.observation,
-            canonical.evidence,
-            (canonical.finding,),
-            (canonical.assessment,),
-            canonical.signals,
-        )
-        context = ExecutionContext(
-            f"github:{repository.id}", "1.0", datetime.now(UTC)
-        )
-        runtime = execute_synchronously(self.runtime, output_projection, context)
+        runtime = canonical.runtime
         summary = self._summary(repository, canonical, runtime)
         print(summary, file=output or sys.stdout)
         return GitHubVerticalSliceResult(canonical, runtime, summary)

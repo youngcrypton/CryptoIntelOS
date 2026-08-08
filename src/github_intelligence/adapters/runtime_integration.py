@@ -6,8 +6,9 @@ from src.github_intelligence.models import Repository
 from src.github_intelligence.organization_analyzer import OrganizationIntelligence
 from src.github_intelligence.repository_scoring import RepositoryScore
 from src.github_intelligence.signal_engine import GitHubIntelligenceSignal
-from src.runtime.engine import ExecutionEngine, ExecutionResult, RuntimePipeline
-from src.runtime.engine.pipeline_stage import PipelineStage
+from src.platform_sdk import execute_synchronously
+from src.runtime.engine import ExecutionContext, ExecutionResult
+from src.runtime.synchronous import SynchronousRuntime, SynchronousRuntimeResult
 
 from .assessment_adapter import RepositoryAssessmentAdapter
 from .evidence_adapter import GitHubEvidenceAdapter
@@ -23,14 +24,20 @@ class GitHubRuntimeResult:
     finding: Finding
     assessment: Assessment
     signals: tuple[Signal, ...]
-    execution: ExecutionResult
+    runtime: SynchronousRuntimeResult
+
+    @property
+    def execution(self) -> ExecutionResult:
+        """Deprecated compatibility view of the canonical Runtime result."""
+
+        return self.runtime.execution
 
 
 class GitHubRuntimeIntegration:
     """Synchronous composition boundary for the first GitHub Runtime slice."""
 
-    def __init__(self, execution_engine: ExecutionEngine | None = None) -> None:
-        self.execution_engine = execution_engine or ExecutionEngine()
+    def __init__(self, runtime: SynchronousRuntime | None = None) -> None:
+        self.runtime = runtime or SynchronousRuntime()
         self.observations = RepositoryObservationAdapter()
         self.evidence = GitHubEvidenceAdapter()
         self.findings = RepositoryFindingAdapter()
@@ -71,27 +78,18 @@ class GitHubRuntimeIntegration:
             self.signals.to_signal(item, entity_reference=entity_reference)
             for item in signals
         )
-        pipeline = RuntimePipeline(
-            (
-                PipelineStage.COLLECT,
-                PipelineStage.ANALYZE,
-                PipelineStage.COMPILE,
-                PipelineStage.GRAPH,
-                PipelineStage.CORRELATE,
-                PipelineStage.REASON,
-                PipelineStage.ASSESS,
-                PipelineStage.SIGNAL,
-                PipelineStage.AUTOMATE,
-                PipelineStage.DISTRIBUTE,
-            )
+        runtime = execute_synchronously(
+            self.runtime,
+            (observation, evidence, (finding,), (assessment,), canonical_signals),
+            ExecutionContext(
+                f"github:{repository.id}", "1.0", observation.observed_at
+            ),
         )
-        context = self.execution_engine.initialize(f"github:{repository.id}", pipeline)
-        execution = self.execution_engine.execute(context, pipeline)
         return GitHubRuntimeResult(
             observation,
             evidence,
             finding,
             assessment,
             canonical_signals,
-            execution,
+            runtime,
         )

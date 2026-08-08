@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from src.platform_sdk import LegacyExecutionAdapter
+
 from src.catalog.catalog_loader import catalog_loader
 from src.factory.collector_factory import collector_factory
 
@@ -17,6 +19,9 @@ from src.orchestrator.health_monitor import (
 
 
 class IntelligenceOrchestrator:
+
+    def __init__(self, runtime_adapter=None):
+        self.runtime_adapter = runtime_adapter or LegacyExecutionAdapter()
 
     def load_collectors(self):
 
@@ -48,7 +53,10 @@ class IntelligenceOrchestrator:
 
             try:
 
-                collector.execute()
+                self.runtime_adapter.execute_collector(
+                    collector,
+                    execution_id=f"legacy:collector:{collector.name}",
+                )
 
                 context.success = True
 

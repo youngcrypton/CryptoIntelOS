@@ -3,6 +3,7 @@
 from .adapter import SourceAdapter
 from .collector import SourceCollector
 from .lifecycle import CANONICAL_LIFECYCLE, LifecycleStage
+from .legacy import LegacyExecutionAdapter, LegacyExecutionResult
 from .metadata import IntegrationMetadata
 from .pipeline import IntegrationPipeline
 from .runtime import (
@@ -40,6 +41,8 @@ __all__ = (
     "IntegrationMetadata",
     "IntegrationPipeline",
     "LifecycleStage",
+    "LegacyExecutionAdapter",
+    "LegacyExecutionResult",
     "ObservationTranslator",
     "ObservationValidator",
     "RuntimeFacade",

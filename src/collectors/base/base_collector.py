@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
+import warnings
 
 
 class BaseCollector(ABC):
@@ -25,6 +26,11 @@ class BaseCollector(ABC):
         Executes one collection cycle.
         """
 
+        warnings.warn(
+            "BaseCollector.execute is deprecated; use Platform SDK collector execution",
+            DeprecationWarning,
+            stacklevel=2,
+        )
         if not self.running:
             self.start()
 
