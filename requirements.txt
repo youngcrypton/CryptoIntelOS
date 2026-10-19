@@ -19,7 +19,7 @@ playwright>=1.55.0
 python-dotenv>=1.1.0
 
 # Terminal UI
-rich>=14.0.0
+rich>=15.0.0
 
 # Database ORM
 SQLAlchemy>=2.0.0
