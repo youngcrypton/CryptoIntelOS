@@ -40,7 +40,7 @@ loguru>=0.7.0
 pytest>=8.4.0
 
 # Code Formatting
-black>=25.1.0
+black>=26.10.1
 
 # Import Sorting
 isort>=6.0.0
